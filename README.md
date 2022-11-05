@@ -29,18 +29,18 @@
 <br />
 <div align="center">
   <a href="https://github.com/qedhere/celer">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="public/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Celer</h3>
 
   <p align="center">
-    project_description
+    Instantly share beautiful notes, latex, markdown, and more!
     <br />
-    <a href="https://github.com/qedhere/celer"><strong>Explore the docs »</strong></a>
+    <a href="https://celer.vercel.app"><strong>Get started »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/qedhere/celer">View Demo</a>
+    <a href="https://github.com/qedhere/celer">Documentation</a>
     ·
     <a href="https://github.com/qedhere/celer/issues">Report Bug</a>
     ·
@@ -81,9 +81,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+A minimal note-taking app that allows you to share beautiful notes, latex, markdown, and much more.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `---`, `---`, ``, `---`, `---`, `---`, `---`, `project_description`
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -93,26 +93,20 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Local Development
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This is an example of how you can set up Celer running locally.
+To get a copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+You must have `yarn` and `npm` installed on your system. Here is quick guide on how to do this: 
 * npm
   ```sh
   npm install npm@latest -g
@@ -122,7 +116,7 @@ This is an example of how to list things you need to use the software and how to
   npm install -g yarn
   ```
 
-### Installation
+### Running the server
 
 2. Clone the repo
    ```sh
@@ -155,10 +149,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [ ] Allow image uploads.
+- [ ] Syntax Highlight Code.
+- [ ] Allow users to embed snippets.
 
 See the [open issues](https://github.com/qedhere/celer/issues) for a full list of proposed features (and known issues).
 
