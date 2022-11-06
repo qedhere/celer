@@ -3,3 +3,5 @@
 - [ ] Complete acknowledgments section.
 - [ ] Add tags to the project in GitHub.
 - [ ] Setup issue templates.
+- [ ] Create Project Picture
+- [ ] Video Advert
