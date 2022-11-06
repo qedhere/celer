@@ -33,7 +33,7 @@
 <h3 align="center">Celer</h3>
 
   <p align="center">
-    Instantly share beautiful notes, latex, markdown, and more!
+    Instantly share stunning notes, latex, markdown, and more!
     <br />
     <a href="https://celer.vercel.app"><strong>Get started »</strong></a>
     <br />

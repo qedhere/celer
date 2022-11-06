@@ -5,7 +5,7 @@ export default function Meta(props) {
     <>
       <Head>
         <title>{props.title}</title>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <meta name="author" content="QED" />
         <meta name="description" content={props.description} />
         <meta property="og:title" content={props.title} />
