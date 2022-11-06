@@ -19,13 +19,16 @@ export default function Home() {
               <TypeAnimation
                 sequence={[
                   "notes.",
-                  3000,
+                  2000,
+                  "",
                   () => setHeroText("heroText2"),
                   "latex.",
-                  3000,
+                  2000,
+                  "",
                   () => setHeroText("heroText3"),
                   "markdown.",
-                  3000,
+                  2000,
+                  "",
                   () => setHeroText("heroText1"),
                 ]}
                 wrapper="span"
