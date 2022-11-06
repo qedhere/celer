@@ -48,10 +48,10 @@ export default function HeaderDrawer(props) {
             </div>
             <div className="grow"></div>
             <div className="h-full flex items-center">
-              <HeaderIconButton icon={props.icon} onClick={props.changeTheme} />
+              
             </div>
           </div>
-          <HeaderActionList />
+          
           <div className="mt-5"></div>
           <HeaderGitStatus />
         </div>

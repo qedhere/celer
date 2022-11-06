@@ -2,9 +2,11 @@ import { Body, Header } from "@components/web"
 
 export default function Home() {
   return (
+    <div>
+    <Header/>
     <Body>
-      <Header/>
       Hello World!
     </Body>
+    </div>
   )
 }

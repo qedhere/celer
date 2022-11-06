@@ -16,9 +16,9 @@ export default function Header(props) {
         <div className="flex items-center grow w-full">
           <div className="mt-[3px]">
             <Image
-              src="/logo.svg"
-              width={32}
-              height={32}
+              src="/delta.svg"
+              width={16}
+              height={16}
               className="no-drag dark:invert"
               alt="Logo"
               priority
@@ -50,8 +50,6 @@ export default function Header(props) {
       <HeaderDrawer
         visible={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        icon={themeIcon}
-        changeTheme={changeTheme}
       />
     </div>
   );
