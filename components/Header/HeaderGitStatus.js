@@ -6,9 +6,7 @@ export default function HeaderGitStatus() {
   const [gitStatus, setGitStatus] = React.useState(null);
 
   React.useEffect(() => {
-    fetch(
-      "https://api.github.com/repos/qedhere/celer/branches/main"
-    )
+    fetch("https://api.github.com/repos/qedhere/celer/branches/main")
       .then((res) => res.json())
       .then((data) => {
         setGitStatus(data);

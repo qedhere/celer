@@ -47,10 +47,7 @@ export default function Header(props) {
       <div className="fixed top-0 h-[64px] flex items-center justify-center z-10 gap-2 invisible md:visible">
         <HeaderLinkList />
       </div>
-      <HeaderDrawer
-        visible={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      />
+      <HeaderDrawer visible={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </div>
   );
 }

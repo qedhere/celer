@@ -1,6 +1,6 @@
-import 'inter-ui/inter.css'
+import "inter-ui/inter.css";
 import "@styles/globals.css";
-import { GeistProvider, CssBaseline } from '@geist-ui/core'
+import { GeistProvider, CssBaseline } from "@geist-ui/core";
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -8,7 +8,7 @@ const App = ({ Component, pageProps }) => {
       <CssBaseline />
       <Component {...pageProps} />
     </GeistProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;

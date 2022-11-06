@@ -45,9 +45,7 @@ export default function HeaderDrawer(props) {
               Quick Links
             </div>
             <div className="grow"></div>
-            <div className="h-full flex items-center">
-              
-            </div>
+            <div className="h-full flex items-center"></div>
           </div>
           <HeaderActionList />
           <div className="mt-5"></div>
