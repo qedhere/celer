@@ -6,38 +6,9 @@ import HeaderLinkList from "./HeaderLinkList";
 import HeaderDrawer from "./HeaderDrawer";
 
 import { SunIcon, MoonIcon, ThreeBarsIcon } from "@primer/octicons-react";
-import { useTheme } from "next-themes";
 
 export default function Header(props) {
-  const [themeNext, setThemeNext] = React.useState("dark");
-  const [themeIcon, setThemeIcon] = React.useState();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const { theme, setTheme } = useTheme();
-
-  React.useEffect(() => {
-    if (
-      localStorage.getItem("theme") == undefined ||
-      localStorage.getItem("theme") == "dark"
-    ) {
-      setTheme("dark");
-      setThemeIcon(<SunIcon />);
-    } else {
-      setTheme("light");
-      setThemeIcon(<MoonIcon />);
-    }
-  }, [setTheme, setThemeIcon]);
-
-  const changeTheme = () => {
-    if (theme == "dark") {
-      localStorage.setItem("theme", "light");
-      window.location.reload();
-      setTheme("light");
-    } else {
-      localStorage.setItem("theme", "dark");
-      window.location.reload();
-      setTheme("dark");
-    }
-  };
 
   return (
     <div className="fixed h-[65px] w-full flex justify-center backdrop-blur dark:bg-[rgba(0,0,0,0.75)] bg-[rgba(255,255,255,0.5)]">
