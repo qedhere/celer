@@ -5,7 +5,7 @@ import { TypeAnimation } from "react-type-animation";
 
 export default function Home() {
   const [heroText, setHeroText] = React.useState(styles.heroText1);
-  const [buttonBackground, setButtonBackground] = React.useState(styles.bg1);
+  const [opacity, setOpacity] = React.useState([1, 0, 0]);
   const [blink, isBlink] = React.useState("");
   return (
     <div>
@@ -27,7 +27,7 @@ export default function Home() {
                   () => {
                     setHeroText(styles.heroText2);
                     isBlink(styles.blink);
-                    setButtonBackground(styles.bg2);
+                    setOpacity([0, 1, 0]);
                   },
                   "latex.",
                   2000,
@@ -35,7 +35,7 @@ export default function Home() {
                   () => {
                     setHeroText(styles.heroText3);
                     isBlink(styles.blink);
-                    setButtonBackground(styles.bg3);
+                    setOpacity([0, 0, 1]);
                   },
                   "markdown.",
                   2000,
@@ -43,7 +43,7 @@ export default function Home() {
                   () => {
                     setHeroText(styles.heroText1);
                     isBlink(styles.blink);
-                    setButtonBackground(styles.bg1);
+                    setOpacity([1, 0, 0]);
                   },
                 ]}
                 wrapper="span"
@@ -51,15 +51,29 @@ export default function Home() {
                 repeat={Infinity}
               />
             </div>
-            <div className={`${styles.blink} ${heroText}`}>
+            <div className={`${styles.defaultBlink} ${blink} ${heroText}`}>
               I
             </div>
           </div>
         </div>
         <div className="flex justify-center mt-[256px]">
-          <button className={`rounded-lg w-[196px] h-[48px] flex justify-center items-center pb-[1px]`}>
-            <div className="flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg">
-            <div className="bg-white w-full h-full rounded-lg flex justify-center items-center">Get Started</div>
+          <button
+            className={`rounded-lg w-[196px] h-[48px] flex justify-center items-center pb-[8px] relative`}
+          >
+            <div
+              className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg1} duration-1000`}
+              style={{ opacity: opacity[0] }}
+            ></div>
+            <div
+              className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg2} duration-1000`}
+              style={{ opacity: opacity[1] }}
+            ></div>
+            <div
+              className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg3} duration-1000`}
+              style={{ opacity: opacity[2] }}
+            ></div>
+            <div className="bg-white w-full h-full rounded-lg flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
+              Get Started
             </div>
           </button>
         </div>

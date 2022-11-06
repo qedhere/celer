@@ -5,6 +5,13 @@
   font-weight: 100;
   font-size: 60px;
 }
+
+.defaultBlink {
+  font-weight: 100;
+  font-size: 60px;
+  background-color: black;
+}
+
 @keyframes blink-animation {
   to {
     visibility: hidden;
