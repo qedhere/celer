@@ -3,12 +3,10 @@ import {
   HomeIcon,
   IssueOpenedIcon,
   MarkGithubIcon,
-  NoteIcon,
   RepoIcon,
   TasklistIcon,
 } from "@primer/octicons-react";
 import React from "react";
-import { SlGraph } from "react-icons/sl";
 import HeaderActionListButton from "./HeaderActionListButton";
 
 export default function HeaderActionList() {
@@ -27,8 +25,8 @@ export default function HeaderActionList() {
         >
           Contact
         </HeaderActionListButton>
-        <HeaderActionListButton href="/blog" icon={<TasklistIcon />}>
-          Blog
+        <HeaderActionListButton href="/app" icon={<TasklistIcon />}>
+          Dashboard
         </HeaderActionListButton>
         <HeaderActionListButton
           href="https://github.com/qedhere/celer/issues/new/choose"
