@@ -7,6 +7,7 @@ export default function Home() {
   const [heroText, setHeroText] = React.useState(styles.heroText1);
   const [opacity, setOpacity] = React.useState([1, 0, 0]);
   const [blink, isBlink] = React.useState("");
+  const [shadow, setShadow] = React.useState(styles.shadow1);
   return (
     <div>
       <Meta
@@ -58,7 +59,7 @@ export default function Home() {
         </div>
         <div className="flex justify-center mt-[256px]">
           <button
-            className={`rounded-lg w-[196px] h-[48px] flex justify-center items-center pb-[8px] relative`}
+            className={`rounded-lg w-[196px] h-[48px] flex justify-center items-center pb-[2px] mb-20 relative`}
           >
             <div
               className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg1} duration-1000`}
@@ -72,9 +73,23 @@ export default function Home() {
               className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg3} duration-1000`}
               style={{ opacity: opacity[2] }}
             ></div>
-            <div className="bg-white w-full h-full rounded-lg flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
+            <div className="bg-white z-10 w-full h-full rounded-lg flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
               Get Started
             </div>
+            <div
+            className={`w-[196px] h-fit z-0 ${styles.shadow1} absolute duration-1000`}
+            style={{ opacity: opacity[0] }}
+            >
+            </div>
+            <div
+              className={`w-[196px] h-fit z-0 ${styles.shadow2} absolute duration-1000`}
+              style={{ opacity: opacity[1] }}
+            >
+            </div>
+            <div
+                className={`w-[196px] h-fit z-0 ${styles.shadow3} absolute duration-1000`}
+                style={{ opacity: opacity[2] }}
+              ></div>
           </button>
         </div>
       </Body>
