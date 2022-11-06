@@ -1,0 +1,75 @@
+.blink {
+  animation: blink-animation 1.2s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1.2s steps(5, start) infinite;
+  animation-delay: 500ms;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+.heroText1 {
+  background: -webkit-linear-gradient(90deg, #007cf0, #00dfd8);
+  background: linear-gradient(90deg, #007cf0, #00dfd8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroText2 {
+  background: -webkit-linear-gradient(90deg, #7928ca, #ff0080);
+  background: linear-gradient(90deg, #7928ca, #ff0080);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.heroText3 {
+  background: -webkit-linear-gradient(90deg, #ff4d4d, #f9cb28);
+  background: linear-gradient(90deg, #ff4d4d, #f9cb28);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.bg1 {
+  background: -webkit-linear-gradient(90deg, #007cf0, #00dfd8);
+  background: linear-gradient(90deg, #007cf0, #00dfd8);
+}
+
+.bg2 {
+  background: -webkit-linear-gradient(90deg, #7928ca, #ff0080);
+  background: linear-gradient(90deg, #7928ca, #ff0080);
+}
+
+.bg3 {
+  background: -webkit-linear-gradient(90deg, #ff4d4d, #f9cb28);
+  background: linear-gradient(90deg, #ff4d4d, #f9cb28);
+}
+
+.shadow1 {
+  -webkit-box-shadow: 0px 0px 64px 16px #00aee480;
+  -moz-box-shadow: 0px 0px 64px 16px #00aee480;
+  box-shadow: 0px 0px 64px 16px #00aee480;
+}
+
+.shadow2 {
+  -webkit-box-shadow: 0px 0px 64px 16px #bc14a580;
+  -moz-box-shadow: 0px 0px 64px 16px #bc14a580;
+  box-shadow: 0px 0px 64px 16px #bc14a580;
+}
+
+.shadow3 {
+  -webkit-box-shadow: 0px 0px 64px 16px #fc8c3b80;
+  -moz-box-shadow: 0px 0px 64px 16px #fc8c3b80;
+  box-shadow: 0px 0px 64px 16px #fc8c3b80;
+}
