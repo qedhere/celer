@@ -2,16 +2,7 @@
   animation: blink-animation 1.2s steps(5, start) infinite;
   -webkit-animation: blink-animation 1.2s steps(5, start) infinite;
   animation-delay: 500ms;
-  font-weight: 100;
-  font-size: 60px;
 }
-
-.defaultBlink {
-  font-weight: 100;
-  font-size: 60px;
-  background-color: black;
-}
-
 @keyframes blink-animation {
   to {
     visibility: hidden;
@@ -66,19 +57,19 @@
 }
 
 .shadow1 {
-  -webkit-box-shadow: 0px 0px 64px 16px #00aee490;
-  -moz-box-shadow: 0px 0px 64px 16px #00aee490;
-  box-shadow: 0px 0px 64px 16px #00aee490;
+  -webkit-box-shadow: 0px 0px 64px 16px #00aee480;
+  -moz-box-shadow: 0px 0px 64px 16px #00aee480;
+  box-shadow: 0px 0px 64px 16px #00aee480;
 }
 
 .shadow2 {
-  -webkit-box-shadow: 0px 0px 64px 16px #bc14a590;
-  -moz-box-shadow: 0px 0px 64px 16px #bc14a590;
-  box-shadow: 0px 0px 64px 16px #bc14a590;
+  -webkit-box-shadow: 0px 0px 64px 16px #bc14a580;
+  -moz-box-shadow: 0px 0px 64px 16px #bc14a580;
+  box-shadow: 0px 0px 64px 16px #bc14a580;
 }
 
 .shadow3 {
-  -webkit-box-shadow: 0px 0px 64px 16px #fc8c3b90;
-  -moz-box-shadow: 0px 0px 64px 16px #fc8c3b90;
-  box-shadow: 0px 0px 64px 16px #fc8c3b90;
+  -webkit-box-shadow: 0px 0px 64px 16px #fc8c3b80;
+  -moz-box-shadow: 0px 0px 64px 16px #fc8c3b80;
+  box-shadow: 0px 0px 64px 16px #fc8c3b80;
 }
