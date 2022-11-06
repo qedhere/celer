@@ -62,20 +62,21 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center sm:mt-[256px] xs:mt-[160px] mt-[64px] gap-8 flex-wrap mr-[32px]">
-          <Link href="/docs">
+        <div className="flex justify-center sm:mt-[256px] xs:mt-[160px] mt-[64px] gap-8 flex-wrap">
+          
             <button
               className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center mb-[-20px] relative border border-black overflow-hidden ${styles.button}`}
             >
+              <Link href="/docs" className="flex justify-center items-center">
               <div className="bg-black text-white z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-black duration-200">
                 Learn more
               </div>
+              </Link>
             </button>
-          </Link>
-          <Link href="/app" style={{ color: "inherit" }}>
             <button
               className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center pb-[2px] mb-20 relative`}
             >
+              <Link href="/docs" className="flex justify-center items-center" style={{color: 'inherit'}}>
               <div
                 className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg1} duration-1000`}
                 style={{ opacity: opacity[0] }}
@@ -103,8 +104,8 @@ export default function Home() {
                 className={`w-[196px] h-fit z-0 ${styles.shadow3} absolute duration-1000`}
                 style={{ opacity: opacity[2] }}
               ></div>
+              </Link>
             </button>
-          </Link>
         </div>
       </Body>
     </div>
