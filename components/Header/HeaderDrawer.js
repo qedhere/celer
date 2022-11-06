@@ -1,9 +1,7 @@
 import { Drawer, Divider } from "@geist-ui/core";
-
-import HeaderIconButton from "./HeaderIconButton";
 import { useWindowSize } from "@react-hook/window-size";
 import React from "react";
-import { HeaderActionList } from "@components/web";
+import HeaderActionList from "./HeaderActionList";
 import HeaderGitStatus from "./HeaderGitStatus";
 
 export default function HeaderDrawer(props) {
@@ -51,7 +49,7 @@ export default function HeaderDrawer(props) {
               
             </div>
           </div>
-          
+          <HeaderActionList />
           <div className="mt-5"></div>
           <HeaderGitStatus />
         </div>

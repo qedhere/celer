@@ -18,8 +18,8 @@ export default function HeaderActionList() {
         <HeaderActionListButton href="/" icon={<HomeIcon />}>
           Home
         </HeaderActionListButton>
-        <HeaderActionListButton href="/projects" icon={<RepoIcon />}>
-          Projects
+        <HeaderActionListButton href="/docs" icon={<RepoIcon />}>
+          Documentation
         </HeaderActionListButton>
         <HeaderActionListButton
           href="/contact"
@@ -30,21 +30,15 @@ export default function HeaderActionList() {
         <HeaderActionListButton href="/blog" icon={<TasklistIcon />}>
           Blog
         </HeaderActionListButton>
-        <HeaderActionListButton href="/notes" icon={<NoteIcon />}>
-          Notes
-        </HeaderActionListButton>
-        <HeaderActionListButton href="/spotify-stats" icon={<SlGraph />}>
-          Spotify Stats
-        </HeaderActionListButton>
         <HeaderActionListButton
-          href="https://github.com/manuanish/manuanish.github.io/issues/new/choose"
+          href="https://github.com/qedhere/celer/issues/new/choose"
           public
           icon={<IssueOpenedIcon />}
         >
           Issues
         </HeaderActionListButton>
         <HeaderActionListButton
-          href="https://github.com/manuanish/manuanish.github.io"
+          href="https://github.com/qedhere/celer"
           public
           icon={<MarkGithubIcon />}
         >

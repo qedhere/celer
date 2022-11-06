@@ -7,7 +7,7 @@ export default function HeaderGitStatus() {
 
   React.useEffect(() => {
     fetch(
-      "https://api.github.com/repos/manuanish/manuanish.github.io/branches/alpha"
+      "https://api.github.com/repos/qedhere/celer/branches/main"
     )
       .then((res) => res.json())
       .then((data) => {
