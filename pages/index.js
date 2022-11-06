@@ -1,7 +1,9 @@
+import { Body } from "@components/web"
+
 export default function Home() {
   return (
-    <div>
+    <Body>
       Hello World!
-    </div>
+    </Body>
   )
 }
