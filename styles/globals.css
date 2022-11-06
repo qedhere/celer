@@ -19,6 +19,16 @@ a {
   box-sizing: border-box;
 }
 
+.blink {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
 .heroText1 {
   background: -webkit-linear-gradient(90deg, #007cf0, #00dfd8);
   background: linear-gradient(90deg, #007cf0, #00dfd8);

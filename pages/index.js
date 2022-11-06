@@ -38,6 +38,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div className="flex justify-center mt-[256px]"><button className="pl-4 pr-4">ok</button></div>
       </Body>
     </div>
   );
