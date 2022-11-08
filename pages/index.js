@@ -6,7 +6,12 @@ import Link from "next/link";
 import { IoLogoVercel, IoLogoFirebase } from "react-icons/io5";
 import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import Image from "next/image";
-import { ArrowRightIcon, RepoIcon } from "@primer/octicons-react";
+import {
+  ArrowRightIcon,
+  CopyIcon,
+  RepoIcon,
+  ShareIcon,
+} from "@primer/octicons-react";
 
 export default function Home() {
   const [heroText, setHeroText] = React.useState(styles.heroText1);
@@ -120,7 +125,12 @@ export default function Home() {
         </div>
         <div className="">
           <div className="flex items-center gap-4">
-            <div className="ml-[6px] flex items-center justify-center mb-4"><RepoIcon size={24} className="text-gray-500"/></div>
+            <div className="ml-[6px] flex items-center justify-center mb-4">
+              <RepoIcon size={24} className="text-gray-500" />{" "}
+              <span className="text-gray-500 ml-2 text-sm font-bold tracking-tight">
+                Why Celer?
+              </span>
+            </div>
           </div>
           <div className="ml-4 h-[50px] bg-gradient-to-b from-transparent to-gray-300 w-[1px]"></div>
           <div className="ml-4 h-[150px] bg-gradient-to-b from-gray-300 to-[#0070f3] w-[1px]"></div>
@@ -133,48 +143,65 @@ export default function Home() {
             </div>
             <div
               className={`text-4xl ${styles.textGradient} font-bold tracking-tighter max-w-[420px] z-30`}
-              style={{textShadow: "20px 20px 100px #FFFFFF"}}
+              style={{ textShadow: "20px 20px 100px #FFFFFF" }}
             >
               Because knowledge was meant to be free.
             </div>
             <div
               className={`text-xl tracking-tight max-w-[420px] z-30 mt-4 text-gray-400`}
-              style={{textShadow: "20px 20px 100px #FFFFFF"}}
+              style={{ textShadow: "20px 20px 100px #FFFFFF" }}
             >
               Unleash your creativity without limits.
             </div>
-            <button className="bg-[#0070f315] pl-4 pr-4 pt-1 pb-1 rounded-full mt-5 text-[#0070f3] flex items-center gap-2 hover:bg-[#0070f325] duration-200">Learn more <ArrowRightIcon/></button>
+            <button className="bg-[#0070f315] pl-4 pr-4 pt-1 pb-1 rounded-full mt-5 text-[#0070f3] flex items-center gap-2 hover:bg-[#0070f325] duration-200">
+              Learn more <ArrowRightIcon />
+            </button>
           </div>
           <div className="flex justify-center relative w-full">
-            <div className="max-w-[500px] p-10 mt-10">
+            <div className="max-w-[500px] p-10 mt-10 no-select no-drag">
               <Image
                 src="/equations/wave-equation.svg"
                 width={300}
                 height={300}
                 alt="Wave Equation"
               />
-              <div className="font-bold tracking-tighter mt-10">Schrödinger equation</div>
-              <div className="text-sm max-w-[320px]">The Schrödinger equation governs the wave function of a quantum-mechanical system. </div>
+              <div className="font-bold tracking-tighter mt-10">
+                Schrödinger equation
+              </div>
+              <div className="text-sm max-w-[320px]">
+                The Schrödinger equation governs the wave function of a
+                quantum-mechanical system.{" "}
+              </div>
             </div>
-            <div className='absolute top-[-20px] left-[180px] opacity-20 blur-[5px]'>
-            <Image
+            <div className="absolute top-[-20px] left-[180px] opacity-20 blur-[5px] no-select no-drag">
+              <Image
                 src="/equations/field-equation.svg"
                 width={300}
                 height={300}
                 alt="Wave Equation"
               />
-              <div className="font-bold tracking-tighter mt-10">Einstein field equations</div>
-              <div className="text-sm max-w-[320px]">The Einstein field equations relate the geometry of spacetime to the distribution of matter within it. </div>
+              <div className="font-bold tracking-tighter mt-10">
+                Einstein field equations
+              </div>
+              <div className="text-sm max-w-[320px]">
+                The Einstein field equations relate the geometry of spacetime to
+                the distribution of matter within it.{" "}
+              </div>
             </div>
-            <div className='absolute bottom-[0px] right-[100px] opacity-30 blur-[2px]'>
-            <Image
+            <div className="absolute bottom-[0px] right-[100px] opacity-30 blur-[2px] no-select no-drag">
+              <Image
                 src="/equations/fourier-equation.svg"
                 width={300}
                 height={300}
                 alt="Wave Equation"
               />
-              <div className="font-bold tracking-tighter mt-10">Fourier transform</div>
-              <div className="text-sm max-w-[320px]">A Fourier transform is a mathematical transform that decomposes functions into frequency components. </div>
+              <div className="font-bold tracking-tighter mt-10">
+                Fourier transform
+              </div>
+              <div className="text-sm max-w-[320px]">
+                A Fourier transform is a mathematical transform that decomposes
+                functions into frequency components.{" "}
+              </div>
             </div>
           </div>
           <div className="mt-[-250px]">
@@ -189,55 +216,39 @@ export default function Home() {
               </div>
               <div
                 className={`text-4xl ${styles.textGradient} font-bold tracking-tighter max-w-[420px] z-30`}
-                style={{textShadow: "20px 20px 100px #FFFFFF"}}
+                style={{ textShadow: "20px 20px 100px #FFFFFF" }}
               >
                 Because knowledge was meant to be shared.
               </div>
               <div
                 className={`text-xl tracking-tight max-w-[420px] z-30 mt-4 text-gray-400`}
-                style={{textShadow: "20px 20px 100px #FFFFFF"}}
+                style={{ textShadow: "20px 20px 100px #FFFFFF" }}
               >
                 Instantly share your work with anyone.
               </div>
-              <button className="bg-[#7928ca15] pl-4 pr-4 pt-1 pb-1 rounded-full mt-5 text-[#7928ca] flex items-center gap-2 hover:bg-[#7928ca25] duration-200">Learn more <ArrowRightIcon/></button>
+              <button className="bg-[#7928ca15] pl-4 pr-4 pt-1 pb-1 rounded-full mt-5 text-[#7928ca] flex items-center gap-2 hover:bg-[#7928ca25] duration-200">
+                Learn more <ArrowRightIcon />
+              </button>
             </div>
           </div>
-          <div className="flex justify-center relative w-full">
-            <div className="max-w-[500px] p-10 mt-10">
-              <Image
-                src="/equations/wave-equation.svg"
-                width={300}
-                height={300}
-                alt="Wave Equation"
-              />
-              <div className="font-bold tracking-tighter mt-10">Schrödinger equation</div>
-              <div className="text-sm max-w-[320px]">The Schrödinger equation governs the wave function of a quantum-mechanical system. </div>
-            </div>
-            <div className='absolute top-[-20px] left-[180px] opacity-20 blur-[5px]'>
-            <Image
-                src="/equations/field-equation.svg"
-                width={300}
-                height={300}
-                alt="Wave Equation"
-              />
-              <div className="font-bold tracking-tighter mt-10">Einstein field equations</div>
-              <div className="text-sm max-w-[320px]">The Einstein field equations relate the geometry of spacetime to the distribution of matter within it. </div>
-            </div>
-            <div className='absolute bottom-[0px] right-[100px] opacity-30 blur-[2px]'>
-            <Image
-                src="/equations/fourier-equation.svg"
-                width={300}
-                height={300}
-                alt="Wave Equation"
-              />
-              <div className="font-bold tracking-tighter mt-10">Fourier transform</div>
-              <div className="text-sm max-w-[320px]">A Fourier transform is a mathematical transform that decomposes functions into frequency components. </div>
+          <div className="flex justify-center items-center relative w-full h-[300px]">
+            <div
+              className={`min-w-[310px] p-4 rounded-lg bg-gray-100 font-mono flex text-sm text-gray-500 shadow-lg relative`}
+            >
+              https://celer.app/gWgwZ3L4qH
+              <div className="grow"></div>
+              <div className="text-[#7928ca]">
+                <ShareIcon size={18} />
+              </div>
+              <div className="absolute right-[-10px]">
+                <Image src="/cursor.svg" width={48} height={48} />
+              </div>
             </div>
           </div>
           <div className="mt-[-250px]">
-            <div className="ml-4 h-[100px] bg-gradient-to-b from-transparent to-[#0070f3] w-[1px]"></div>
-            <div className="ml-4 h-[150px] bg-gradient-to-b from-[#0070f3] to-[#7928ca] w-[1px]"></div>
-            <div className="ml-4 h-[100px] bg-gradient-to-b from-[#7928ca] to-transparent w-[1px]"></div>
+            <div className="ml-4 h-[100px] bg-gradient-to-b from-transparent to-[#7928ca] w-[1px]"></div>
+            <div className="ml-4 h-[150px] bg-gradient-to-b from-[#7928ca] to-[#ff4d4d] w-[1px]"></div>
+            <div className="ml-4 h-[100px] bg-gradient-to-b from-[#ff4d4d] to-transparent w-[1px]"></div>
             <div>
               <div
                 className={`${styles.heroText3} font-semibold tracking-tighter text-lg mb-2 mt-4 w-fit`}
@@ -246,17 +257,19 @@ export default function Home() {
               </div>
               <div
                 className={`text-4xl ${styles.textGradient} font-bold tracking-tighter max-w-[420px] z-30`}
-                style={{textShadow: "20px 20px 100px #FFFFFF"}}
+                style={{ textShadow: "20px 20px 100px #FFFFFF" }}
               >
-                Because knowledge was meant to be shared.
+                Because knowledge was meant to be open.
               </div>
               <div
                 className={`text-xl tracking-tight max-w-[420px] z-30 mt-4 text-gray-400`}
-                style={{textShadow: "20px 20px 100px #FFFFFF"}}
+                style={{ textShadow: "20px 20px 100px #FFFFFF" }}
               >
-                Instantly share your work with anyone.
+                Celer is an open source foundation.
               </div>
-              <button className="bg-[#7928ca15] pl-4 pr-4 pt-1 pb-1 rounded-full mt-5 text-[#7928ca] flex items-center gap-2 hover:bg-[#7928ca25] duration-200">Learn more <ArrowRightIcon/></button>
+              <button className="bg-[#ff4d4d15] pl-4 pr-4 pt-1 pb-1 rounded-full mt-5 text-[#ff4d4d] flex items-center gap-2 hover:bg-[#ff4d4d25] duration-200">
+                Learn more <ArrowRightIcon />
+              </button>
             </div>
           </div>
         </div>
