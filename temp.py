@@ -1,0 +1,5 @@
+print("Did you know celer is open source?")
+print("That's right, it's on GitHub!")
+print("""Anyone can contribute to the project.""")
+print("You can also report bugs or request features.")
+print("Check it out at https://github.com/qedhere/celer")
