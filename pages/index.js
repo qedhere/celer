@@ -341,7 +341,7 @@ export default function Home() {
             className={`text-white text-6xl sm:text-7xl font-extrabold tracking-tighter pt-20 text-center pb-20`}
           >
             Ready to{" "}
-            <span className="relative text-transparent">
+            <span className="relative text-transparent w-fit whitespace-nowrap">
               dive in?
               <span
                 className={`text-red-500 absolute right-0 ${styles.heroText1} duration-1000`}
