@@ -74,6 +74,24 @@
   box-shadow: 0px 0px 64px 16px #fc8c3b80;
 }
 
+.shadow4 {
+  -webkit-box-shadow: 0px 0px 64px 16px #00aee450;
+  -moz-box-shadow: 0px 0px 64px 16px #00aee450;
+  box-shadow: 0px 0px 64px 16px #00aee450;
+}
+
+.shadow5 {
+  -webkit-box-shadow: 0px 0px 64px 16px #bc14a550;
+  -moz-box-shadow: 0px 0px 64px 16px #bc14a550;
+  box-shadow: 0px 0px 64px 16px #bc14a550;
+}
+
+.shadow6 {
+  -webkit-box-shadow: 0px 0px 64px 16px #fc8c3b50;
+  -moz-box-shadow: 0px 0px 64px 16px #fc8c3b50;
+  box-shadow: 0px 0px 64px 16px #fc8c3b50;
+}
+
 .textGradient {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), #000);
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), #000);
