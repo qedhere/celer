@@ -29,12 +29,12 @@ export default function Home() {
         <div className="mt-[128px] xs:mt-[192px] sm:mt-[256px]">
           <div className="flex justify-center items-center sm:justify-none sm:items-auto">
             <div
-              className={`md:text-6xl lg:text-7xl xs:text-5xl text-4xl max-w-[330px] xs:max-w-none font-extrabold tracking-tighter pb-2 flex items-center sm:gap-2 flex flex-wrap sm:justify-center duration-200 h-[150px] xs:pl-8 xs:pr-8`}
+              className={`md:text-6xl lg:text-7xl xs:text-5xl text-5xl max-w-[330px] xs:max-w-none font-extrabold tracking-tighter pb-2 flex items-center sm:gap-2 flex flex-wrap sm:justify-center duration-200 h-[150px] xs:pl-8 xs:pr-8`}
             >
               <span className={`pb-[6px] ${styles.textGradient}`}>
                 Instantly share stunning
               </span>{" "}
-              <div className={`${heroText} mt-[-40px] xs:mt-0`}>
+              <div className={`${heroText} mt-[0px] xs:mt-0`}>
                 <TypeAnimation
                   sequence={[
                     "notes.",
@@ -68,7 +68,7 @@ export default function Home() {
                 />
               </div>
               <div
-                className={`${blink} ${heroText} md:text-6xl lg:text-7xl xs:text-5xl text-4xl font-thin mt-[-40px] xs:mt-0`}
+                className={`${blink} ${heroText} md:text-6xl lg:text-7xl xs:text-5xl text-5xl font-thin`}
               >
                 I
               </div>
@@ -233,15 +233,21 @@ export default function Home() {
           </div>
           <div className="flex justify-center items-center relative w-full h-[300px]">
             <div
-              className={`min-w-[310px] p-4 rounded-lg bg-gray-100 font-mono flex text-sm text-gray-500 shadow-lg relative`}
+              className={`min-w-[270px] p-4 rounded-lg bg-gray-100 font-mono flex text-sm text-gray-500 shadow-lg relative`}
             >
-              https://celer.app/gWgwZ3L4qH
+              /app/gWgwZ3L4qH
               <div className="grow"></div>
               <div className="text-[#7928ca]">
                 <ShareIcon size={18} />
               </div>
               <div className="absolute right-[-10px]">
-                <Image src="/cursor.svg" width={48} height={48} />
+                <Image
+                  src="/cursor.svg"
+                  width={48}
+                  height={48}
+                  className="z-50"
+                  alt="Cursor"
+                />
               </div>
             </div>
           </div>
@@ -270,6 +276,53 @@ export default function Home() {
               <button className="bg-[#ff4d4d15] pl-4 pr-4 pt-1 pb-1 rounded-full mt-5 text-[#ff4d4d] flex items-center gap-2 hover:bg-[#ff4d4d25] duration-200">
                 Learn more <ArrowRightIcon />
               </button>
+            </div>
+            <div className="flex justify-center relative w-full">
+              <div className="max-w-[500px] p-10 mt-10 no-select no-drag">
+                <Image
+                  src="/equations/wave-equation.svg"
+                  width={300}
+                  height={300}
+                  alt="Wave Equation"
+                />
+                <div className="font-bold tracking-tighter mt-10">
+                  Schrödinger equation
+                </div>
+                <div className="text-sm max-w-[320px]">
+                  The Schrödinger equation governs the wave function of a
+                  quantum-mechanical system.{" "}
+                </div>
+              </div>
+              <div className="absolute top-[-20px] left-[180px] opacity-20 blur-[5px] no-select no-drag">
+                <Image
+                  src="/equations/field-equation.svg"
+                  width={300}
+                  height={300}
+                  alt="Wave Equation"
+                />
+                <div className="font-bold tracking-tighter mt-10">
+                  Einstein field equations
+                </div>
+                <div className="text-sm max-w-[320px]">
+                  The Einstein field equations relate the geometry of spacetime
+                  to the distribution of matter within it.{" "}
+                </div>
+              </div>
+              <div className="absolute bottom-[0px] right-[100px] opacity-30 blur-[2px] no-select no-drag">
+                <Image
+                  src="/equations/fourier-equation.svg"
+                  width={300}
+                  height={300}
+                  alt="Wave Equation"
+                />
+                <div className="font-bold tracking-tighter mt-10">
+                  Fourier transform
+                </div>
+                <div className="text-sm max-w-[320px]">
+                  A Fourier transform is a mathematical transform that
+                  decomposes functions into frequency components.{" "}
+                </div>
+              </div>
             </div>
           </div>
         </div>
