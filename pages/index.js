@@ -271,72 +271,148 @@ export default function Home() {
                 Learn more <ArrowRightIcon />
               </button>
             </div>
-            <div className="flex justify-center relative w-full text-gray-400 mt-20">
-              <div className="max-w-[600px] grow bg-[#21262c] rounded-xl">
-                <div className="flex">
-                  <div className="flex items-center gap-2 p-4 rounded-t-xl bg-[#282C34EE]">
-                    <IoLogoPython /> celer.py
+            <div className="overflow-hidden mt-20">
+              <div className="flex justify-center relative w-full text-gray-400">
+                <div className="bg-[#21262c] rounded-xl">
+                  <div className="flex">
+                    <div className="flex items-center gap-2 p-4 rounded-t-xl bg-[#282C34]">
+                      <IoLogoPython /> celer.py
+                    </div>
                   </div>
-                </div>
-                <div className="p-4 bg-[#282C34] rounded-tr-0 rounded-b-xl shadow-xl font-mono whitespace-nowrap">
-                  <span className="text-[#61AFEF]">print</span>
-                  <span className="text-[#D19A66]">&#40;</span>
-                  <span className="text-[#98C379]">
-                    &quot;Did you know celer is open source?&quot;
-                  </span>
-                  <span className="text-[#D19A66]">&#41;</span>
-                  <br />
-                  <span className="text-[#61AFEF]">print</span>
-                  <span className="text-[#D19A66]">&#40;</span>
-                  <span className="text-[#98C379]">
-                    &quot;That&apos;s right, it&apos;s on GitHub!&quot;
-                  </span>
-                  <span className="text-[#D19A66]">&#41;</span>
-                  <br />
-                  <span className="text-[#61AFEF]">print</span>
-                  <span className="text-[#D19A66]">&#40;</span>
-                  <span className="text-[#98C379]">
-                    &quot;Anyone can contribute to the project.
-                  </span>
-                  <span className="text-[#D19A66]">&#41;</span>
-                  <br />
-                  <span className="text-[#61AFEF]">print</span>
-                  <span className="text-[#D19A66]">&#40;</span>
-                  <span className="text-[#98C379]">
-                    &quot;You can also report bugs or request features.
-                  </span>
-                  <span className="text-[#D19A66]">&#41;</span>
-                  <br />
-                  <span className="text-[#61AFEF]">print</span>
-                  <span className="text-[#D19A66]">&#40;</span>
-                  <span className="text-[#98C379]">
-                    &quot;Check it out at{" "}
-                    <a
-                      className="underline text-[#ff4d4d]"
-                      href="https://github.com/qedhere/celer"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      https://github.com/qedhere/celer
-                    </a>
-                  </span>
-                  <span className="text-[#D19A66]">&#41;</span>
+                  <div className="p-4 bg-[#282C34] rounded-tr-0 rounded-b-xl shadow-xl font-mono text-[12px] sm:text-[16px]">
+                    <div className="grow">
+                      <span className="text-[#61AFEF]">print</span>
+                      <span className="text-[#D19A66]">&#40;</span>
+                      <span className="text-[#98C379]">
+                        &quot;Did you know celer is open source?&quot;
+                      </span>
+                      <span className="text-[#D19A66]">&#41;</span>
+                    </div>
+                    <div>
+                      <span className="text-[#61AFEF]">print</span>
+                      <span className="text-[#D19A66]">&#40;</span>
+                      <span className="text-[#98C379]">
+                        &quot;That&apos;s right, it&apos;s on GitHub!&quot;
+                      </span>
+                      <span className="text-[#D19A66]">&#41;</span>
+                    </div>
+                    <div>
+                      <span className="text-[#61AFEF]">print</span>
+                      <span className="text-[#D19A66]">&#40;</span>
+                      <span className="text-[#98C379]">
+                        &quot;Anyone can contribute to the project.
+                      </span>
+                      <span className="text-[#D19A66]">&#41;</span>
+                    </div>
+                    <div>
+                      <span className="text-[#61AFEF]">print</span>
+                      <span className="text-[#D19A66]">&#40;</span>
+                      <span className="text-[#98C379]">
+                        &quot;You can also report bugs or request features.
+                      </span>
+                      <span className="text-[#D19A66]">&#41;</span>
+                    </div>
+                    <div>
+                      <span className="text-[#61AFEF]">print</span>
+                      <span className="text-[#D19A66]">&#40;</span>
+                      <span className="text-[#98C379]">
+                        &quot;Check it out at{" "}
+                        <a
+                          className="underline text-[#ff4d4d]"
+                          href="https://github.com/qedhere/celer"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          https://github.com/qedhere/celer
+                        </a>
+                      </span>
+                      <span className="text-[#D19A66]">&#41;</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex mt-20">
-          <div className="w-[50px] xs:w-[75px] sm:w-[100px] bg-gradient-to-l from-gray-300 to-white pt-[1px] pb-[1px] flex justify-center items-center">
-            <div className="w-[50px] xs:w-[75px] sm:w-[100px] bg-gradient-to-l from-gray-100 to-white h-full"></div>
-          </div>
-          <div className="w-full h-[200px] bg-gray-100 border-t border-b border-gray-300 flex justify-center items-center gap-5 text-gray-400"></div>
-          <div className="w-[50px] xs:w-[75px] sm:w-[100px] bg-gradient-to-r from-gray-300 to-white pt-[1px] pb-[1px] flex justify-center items-center">
-            <div className="w-[50px] xs:w-[75px] sm:w-[100px] bg-gradient-to-r from-gray-100 to-white h-full"></div>
-          </div>
-        </div>
       </Body>
-      <div className="h-[64px] md:h-[100px] w-full"></div>
+      <div className="bg-black mt-20">
+        <Body>
+          <div
+            className={`text-white text-6xl sm:text-7xl font-extrabold tracking-tighter pt-20 text-center pb-20`}
+          >
+            Ready to{" "}
+            <span className="relative text-transparent">
+              dive in?
+              <span
+                className={`text-red-500 absolute right-0 ${styles.heroText1} duration-1000`}
+                style={{ opacity: opacity[0] }}
+              >
+                dive in?
+              </span>
+              <span
+                className={`text-blue-500 absolute right-0 ${styles.heroText2} duration-1000`}
+                style={{ opacity: opacity[1] }}
+              >
+                dive in?
+              </span>
+              <span
+                className={`text-green-500 absolute right-0 ${styles.heroText3} duration-1000`}
+                style={{ opacity: opacity[2] }}
+              >
+                dive in?
+              </span>
+            </span>
+          </div>
+          <div className="flex justify-center gap-8 flex-wrap">
+            <button
+              className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center mb-[-20px] relative border border-transparent hover:border-white overflow-hidden ${styles.button}`}
+            >
+              <Link href="/docs" className="flex justify-center items-center">
+                <div className="bg-white text-black z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
+                  Learn more
+                </div>
+              </Link>
+            </button>
+            <button
+              className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center pb-[2px] mb-20 relative`}
+            >
+              <Link
+                href="/login"
+                className="flex justify-center items-center"
+                style={{ color: "inherit" }}
+              >
+                <div
+                  className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg1} duration-1000`}
+                  style={{ opacity: opacity[0] }}
+                ></div>
+                <div
+                  className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg2} duration-1000`}
+                  style={{ opacity: opacity[1] }}
+                ></div>
+                <div
+                  className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg3} duration-1000`}
+                  style={{ opacity: opacity[2] }}
+                ></div>
+                <div className="bg-black text-white z-10 w-full h-full rounded-lg flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
+                  Get Started
+                </div>
+                <div
+                  className={`w-[196px] h-fit z-0 ${styles.shadow1} absolute duration-1000`}
+                  style={{ opacity: opacity[0] }}
+                ></div>
+                <div
+                  className={`w-[196px] h-fit z-0 ${styles.shadow2} absolute duration-1000`}
+                  style={{ opacity: opacity[1] }}
+                ></div>
+                <div
+                  className={`w-[196px] h-fit z-0 ${styles.shadow3} absolute duration-1000`}
+                  style={{ opacity: opacity[2] }}
+                ></div>
+              </Link>
+            </button>
+          </div>
+        </Body>
+      </div>
     </div>
   );
 }
