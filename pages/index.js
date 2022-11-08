@@ -3,21 +3,15 @@ import styles from "@styles/Home.module.css";
 import { Body, Header, Meta } from "@components/web";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
-import { IoLogoVercel, IoLogoFirebase } from "react-icons/io5";
-import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import Image from "next/image";
-import {
-  ArrowRightIcon,
-  CopyIcon,
-  RepoIcon,
-  ShareIcon,
-} from "@primer/octicons-react";
+import { ArrowRightIcon, RepoIcon, ShareIcon } from "@primer/octicons-react";
+import { IoLogoPython } from "react-icons/io5";
 
 export default function Home() {
   const [heroText, setHeroText] = React.useState(styles.heroText1);
   const [opacity, setOpacity] = React.useState([1, 0, 0]);
   const [blink, isBlink] = React.useState("");
-  const [shadow, setShadow] = React.useState(styles.shadow1);
+
   return (
     <div>
       <Meta
@@ -137,7 +131,7 @@ export default function Home() {
           <div className="ml-4 h-[50px] bg-gradient-to-b from-[#0070f3] to-transparent w-[1px]"></div>
           <div>
             <div
-              className={`${styles.heroText1} font-semibold tracking-tighter text-lg mb-2 mt-4 w-fit`}
+              className={`${styles.heroText1} font-bold tracking-tighter text-lg mb-2 mt-4 w-fit`}
             >
               Free
             </div>
@@ -210,7 +204,7 @@ export default function Home() {
             <div className="ml-4 h-[100px] bg-gradient-to-b from-[#7928ca] to-transparent w-[1px]"></div>
             <div>
               <div
-                className={`${styles.heroText2} font-semibold tracking-tighter text-lg mb-2 mt-4 w-fit`}
+                className={`${styles.heroText2} font-bold tracking-tighter text-lg mb-2 mt-4 w-fit`}
               >
                 Shared
               </div>
@@ -257,7 +251,7 @@ export default function Home() {
             <div className="ml-4 h-[100px] bg-gradient-to-b from-[#ff4d4d] to-transparent w-[1px]"></div>
             <div>
               <div
-                className={`${styles.heroText3} font-semibold tracking-tighter text-lg mb-2 mt-4 w-fit`}
+                className={`${styles.heroText3} font-bold tracking-tighter text-lg mb-2 mt-4 w-fit`}
               >
                 Open
               </div>
@@ -268,7 +262,7 @@ export default function Home() {
                 Because knowledge was meant to be open.
               </div>
               <div
-                className={`text-xl tracking-tight max-w-[420px] z-30 mt-4 text-gray-400`}
+                className={`text-xl tracking-tight z-30 mt-4 text-gray-400`}
                 style={{ textShadow: "20px 20px 100px #FFFFFF" }}
               >
                 Celer is an open source foundation.
@@ -277,50 +271,56 @@ export default function Home() {
                 Learn more <ArrowRightIcon />
               </button>
             </div>
-            <div className="flex justify-center relative w-full">
-              <div className="max-w-[500px] p-10 mt-10 no-select no-drag">
-                <Image
-                  src="/equations/wave-equation.svg"
-                  width={300}
-                  height={300}
-                  alt="Wave Equation"
-                />
-                <div className="font-bold tracking-tighter mt-10">
-                  Schrödinger equation
+            <div className="flex justify-center relative w-full text-gray-400 mt-20">
+              <div className="max-w-[600px] grow bg-[#21262c] rounded-xl">
+                <div className="flex">
+                  <div className="flex items-center gap-2 p-4 rounded-t-xl bg-[#282C34EE]">
+                    <IoLogoPython /> celer.py
+                  </div>
                 </div>
-                <div className="text-sm max-w-[320px]">
-                  The Schrödinger equation governs the wave function of a
-                  quantum-mechanical system.{" "}
-                </div>
-              </div>
-              <div className="absolute top-[-20px] left-[180px] opacity-20 blur-[5px] no-select no-drag">
-                <Image
-                  src="/equations/field-equation.svg"
-                  width={300}
-                  height={300}
-                  alt="Wave Equation"
-                />
-                <div className="font-bold tracking-tighter mt-10">
-                  Einstein field equations
-                </div>
-                <div className="text-sm max-w-[320px]">
-                  The Einstein field equations relate the geometry of spacetime
-                  to the distribution of matter within it.{" "}
-                </div>
-              </div>
-              <div className="absolute bottom-[0px] right-[100px] opacity-30 blur-[2px] no-select no-drag">
-                <Image
-                  src="/equations/fourier-equation.svg"
-                  width={300}
-                  height={300}
-                  alt="Wave Equation"
-                />
-                <div className="font-bold tracking-tighter mt-10">
-                  Fourier transform
-                </div>
-                <div className="text-sm max-w-[320px]">
-                  A Fourier transform is a mathematical transform that
-                  decomposes functions into frequency components.{" "}
+                <div className="p-4 bg-[#282C34] rounded-tr-0 rounded-b-xl shadow-xl font-mono whitespace-nowrap">
+                  <span className="text-[#61AFEF]">print</span>
+                  <span className="text-[#D19A66]">&#40;</span>
+                  <span className="text-[#98C379]">
+                    &quot;Did you know celer is open source?&quot;
+                  </span>
+                  <span className="text-[#D19A66]">&#41;</span>
+                  <br />
+                  <span className="text-[#61AFEF]">print</span>
+                  <span className="text-[#D19A66]">&#40;</span>
+                  <span className="text-[#98C379]">
+                    &quot;That&apos;s right, it&apos;s on GitHub!&quot;
+                  </span>
+                  <span className="text-[#D19A66]">&#41;</span>
+                  <br />
+                  <span className="text-[#61AFEF]">print</span>
+                  <span className="text-[#D19A66]">&#40;</span>
+                  <span className="text-[#98C379]">
+                    &quot;Anyone can contribute to the project.
+                  </span>
+                  <span className="text-[#D19A66]">&#41;</span>
+                  <br />
+                  <span className="text-[#61AFEF]">print</span>
+                  <span className="text-[#D19A66]">&#40;</span>
+                  <span className="text-[#98C379]">
+                    &quot;You can also report bugs or request features.
+                  </span>
+                  <span className="text-[#D19A66]">&#41;</span>
+                  <br />
+                  <span className="text-[#61AFEF]">print</span>
+                  <span className="text-[#D19A66]">&#40;</span>
+                  <span className="text-[#98C379]">
+                    &quot;Check it out at{" "}
+                    <a
+                      className="underline text-[#ff4d4d]"
+                      href="https://github.com/qedhere/celer"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      https://github.com/qedhere/celer
+                    </a>
+                  </span>
+                  <span className="text-[#D19A66]">&#41;</span>
                 </div>
               </div>
             </div>
@@ -330,10 +330,7 @@ export default function Home() {
           <div className="w-[50px] xs:w-[75px] sm:w-[100px] bg-gradient-to-l from-gray-300 to-white pt-[1px] pb-[1px] flex justify-center items-center">
             <div className="w-[50px] xs:w-[75px] sm:w-[100px] bg-gradient-to-l from-gray-100 to-white h-full"></div>
           </div>
-          <div className="w-full h-[200px] bg-gray-100 border-t border-b border-gray-300 flex justify-center items-center gap-5 text-gray-400">
-            <IoLogoVercel size={32} /> <IoLogoFirebase size={32} />{" "}
-            <SiNextdotjs size={32} /> <SiTailwindcss size={32} />
-          </div>
+          <div className="w-full h-[200px] bg-gray-100 border-t border-b border-gray-300 flex justify-center items-center gap-5 text-gray-400"></div>
           <div className="w-[50px] xs:w-[75px] sm:w-[100px] bg-gradient-to-r from-gray-300 to-white pt-[1px] pb-[1px] flex justify-center items-center">
             <div className="w-[50px] xs:w-[75px] sm:w-[100px] bg-gradient-to-r from-gray-100 to-white h-full"></div>
           </div>
