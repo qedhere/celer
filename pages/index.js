@@ -71,10 +71,11 @@ export default function Home() {
         </div>
         <div className="flex justify-center sm:mt-[256px] xs:mt-[178px] mt-[100px] gap-8 flex-wrap">
           <button
-            className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center mb-[-20px] relative border border-transparent hover:border-black overflow-hidden ${styles.button}`}
+            className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center mb-[-20px] relative border border-transparent hover:border-black-900
+             overflow-hidden ${styles.button}`}
           >
             <Link href="/docs" className="flex justify-center items-center">
-              <div className="bg-black-900 text-white z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-black duration-200">
+              <div className="bg-black-900 text-white z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-black-900 duration-200">
                 Learn more
               </div>
             </Link>
@@ -372,7 +373,7 @@ export default function Home() {
                 className="flex justify-center items-center"
                 style={{ color: "inherit" }}
               >
-                <div className="bg-white text-black z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
+                <div className="bg-white text-black-900 z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
                   Learn more
                 </div>
               </Link>

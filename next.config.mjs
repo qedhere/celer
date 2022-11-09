@@ -1,14 +1,14 @@
 import nextMDX from "@next/mdx";
 import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import remarkPrism from "remark-prism";
 
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm, remarkParse, remarkRehype],
-    rehypePlugins: [rehypeStringify],
+    remarkPlugins: [remarkGfm, remarkMath, remarkPrism],
+    rehypePlugins: [rehypeKatex],
   },
 });
 
