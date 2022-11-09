@@ -1,19 +1,17 @@
-/** @type {import('next').NextConfig} */
-import withMDX from "@next/mdx";
-import remarkPrism from "remark-prism";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
+import nextMDX from '@next/mdx'
+import remarkGfm from 'remark-gfm'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
 
-const NextConfig = withMDX({
+const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm, remarkPrism, remarkMath],
-    rehypePlugins: [rehypeKatex],
+    remarkPlugins: [remarkGfm, remarkParse, remarkRehype],
+    rehypePlugins: [rehypeStringify],
   },
 })
 
-module.exports = NextConfig({
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-  reactStrictMode: true
+export default withMDX({
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
 })

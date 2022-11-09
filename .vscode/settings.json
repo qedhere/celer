@@ -5,6 +5,7 @@
     "Katex",
     "noopener",
     "noreferrer",
-    "rehype"
+    "rehype",
+    "tailwindcss"
   ]
 }
