@@ -74,7 +74,7 @@ export default function Home() {
             className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center mb-[-20px] relative border border-transparent hover:border-black overflow-hidden ${styles.button}`}
           >
             <Link href="/docs" className="flex justify-center items-center">
-              <div className="bg-black text-white z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-black duration-200">
+              <div className="bg-black-900 text-white z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-black duration-200">
                 Learn more
               </div>
             </Link>
@@ -88,15 +88,15 @@ export default function Home() {
               style={{ color: "inherit" }}
             >
               <div
-                className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg1} duration-1000`}
+                className={`flex justify-center items-center p-[1px] bg-black-900 w-full h-full rounded-lg absolute ${styles.bg1} duration-1000`}
                 style={{ opacity: opacity[0] }}
               ></div>
               <div
-                className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg2} duration-1000`}
+                className={`flex justify-center items-center p-[1px] bg-black-900 w-full h-full rounded-lg absolute ${styles.bg2} duration-1000`}
                 style={{ opacity: opacity[1] }}
               ></div>
               <div
-                className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg3} duration-1000`}
+                className={`flex justify-center items-center p-[1px] bg-black-900 w-full h-full rounded-lg absolute ${styles.bg3} duration-1000`}
                 style={{ opacity: opacity[2] }}
               ></div>
               <div className="bg-white z-10 w-full h-full rounded-lg flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
@@ -335,7 +335,7 @@ export default function Home() {
           </div>
         </div>
       </Body>
-      <div className="bg-black mt-20">
+      <div className="bg-black-900 mt-20">
         <Body>
           <div
             className={`text-white text-6xl sm:text-7xl font-extrabold tracking-tighter pt-20 text-center pb-20`}
@@ -367,7 +367,11 @@ export default function Home() {
             <button
               className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center mb-[-20px] relative border border-transparent hover:border-white overflow-hidden ${styles.button}`}
             >
-              <Link href="/docs" className="flex justify-center items-center">
+              <Link
+                href="/docs"
+                className="flex justify-center items-center"
+                style={{ color: "inherit" }}
+              >
                 <div className="bg-white text-black z-10 w-full h-full flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
                   Learn more
                 </div>
@@ -382,18 +386,18 @@ export default function Home() {
                 style={{ color: "inherit" }}
               >
                 <div
-                  className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg1} duration-1000`}
+                  className={`flex justify-center items-center p-[1px] bg-black-900 w-full h-full rounded-lg absolute ${styles.bg1} duration-1000`}
                   style={{ opacity: opacity[0] }}
                 ></div>
                 <div
-                  className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg2} duration-1000`}
+                  className={`flex justify-center items-center p-[1px] bg-black-900 w-full h-full rounded-lg absolute ${styles.bg2} duration-1000`}
                   style={{ opacity: opacity[1] }}
                 ></div>
                 <div
-                  className={`flex justify-center items-center p-[1px] bg-black w-full h-full rounded-lg absolute ${styles.bg3} duration-1000`}
+                  className={`flex justify-center items-center p-[1px] bg-black-900 w-full h-full rounded-lg absolute ${styles.bg3} duration-1000`}
                   style={{ opacity: opacity[2] }}
                 ></div>
-                <div className="bg-black text-white z-10 w-full h-full rounded-lg flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
+                <div className="bg-black-900 text-white z-10 w-full h-full rounded-lg flex justify-center items-center absolute hover:bg-transparent hover:text-white duration-200">
                   Get Started
                 </div>
                 <div

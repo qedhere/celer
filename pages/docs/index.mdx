@@ -1,0 +1,16 @@
+export const meta = {
+  title: "Welcome! 👋",
+  description: "Home page for the QED documentation.",
+  contributors: "manuanish",
+  link: "index.mdx",
+};
+
+import { Layout } from "@components/docs";
+
+# Hello World!
+
+```js
+Hello World!
+```
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
