@@ -14,4 +14,8 @@ const withMDX = nextMDX({
 
 export default withMDX({
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  reactStrictMode: true,
+  images: {
+    domains: ["github.com", "avatars.githubusercontent.com"],
+  },
 });

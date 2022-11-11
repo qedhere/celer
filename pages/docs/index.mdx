@@ -1,13 +1,40 @@
 export const meta = {
   title: "Celer Documentation",
   description: "Home page for the Celer documentation.",
-  tags: ['Home', 'General'],
-  contributors: "manuanish",
+  tags: ["Home", "General", "FAQ"],
+  contributors: ["manuanish", "qedhere"],
   link: "index.mdx",
 };
 
-import { Layout } from "@components/docs";
+import { Layout, LinkButton } from "@components/docs";
 
-This is my webpage
+Hello! Welcome to the Celer documentation. Here you can find all the information you need to know about Celer.
+Let's get started!
+
+## Guides
+
+If you are new to Celer, we recommend you start with the [Getting Started](/docs/getting-started) guide.
+Celer uses markdown along with LaTeX to render your notes. You can find more information about the syntax [here](/docs/syntax).
+If you are a developer, and would like to contribute to Celer, check out the [Contributing Guide](/docs/contributing).
+
+## FAQ
+
+> What is Celer?
+
+Celer is a note taking app that helps you organize your thoughts and ideas.
+It is designed to be simple and intuitive to use, so you can focus on what matters.
+
+> What is the difference between Celer and other note taking apps?
+
+Celer is meticulously handcrafted to optimize speed so you can share your work instantly. Built on Next.js 13, it is blazingly fast and has a small footprint.
+
+> What does Celer mean?
+
+Celer is Latin for "speed".
+
+> How can I contribute to Celer?
+
+Celer is open source, and you can contribute to it on [GitHub](https://github.com/qedhere/celer).
+For more information, check out the [Contributing](/docs/contributing) guide.
 
 export default ({ children }) => <Layout meta={meta}>{children}</Layout>;

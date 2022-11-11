@@ -1,0 +1,24 @@
+export const meta = {
+  title: "Celer Documentation",
+  description: "A short guide for new contributors.",
+  tags: ["Guide", "Contributing"],
+  contributors: ["manuanish"],
+  link: "index.mdx",
+};
+
+import { Layout, LinkButton } from "@components/docs";
+
+## Contributing
+
+Follow these steps to contribute:
+
+1. Fork the [Celer repository](https://github.com/qedhere/celer/fork)
+2. Clone the forked repository to your local machine.
+3. Make your changes.
+4. Commit your changes.
+5. Push your changes to your forked repository.
+6. Create a pull request to the Celer documentation repository.
+7. Wait for your pull request to be reviewed and merged.
+8. Celebrate! 🎉
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
