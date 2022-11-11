@@ -1,0 +1,144 @@
+export const meta = {
+  title: "Celer Documentation",
+  description: "A short guide for new contributors.",
+  tags: ["Guide", "Contributing"],
+  contributors: ["manuanish"],
+  link: "syntax.mdx",
+};
+
+import { Layout, LinkButton } from "@components/docs";
+
+## Syntax in Celer
+
+Celer uses a combination of Markdown and LaTeX to render notes.
+This allows us to write notes in a familiar way, while also providing the ability to add custom components and styles.
+
+## Markdown
+
+Markdown is a lightweight markup language with plain text formatting syntax.
+It is designed so that it can be converted to HTML and many other formats using a tool by the same name.
+
+```md
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+**Bold Text**
+
+_Italic Text_
+
+~~Strikethrough Text~~
+
+> Blockquote
+
+- List Item 1
+- List Item 2
+- List Item 3
+
+1. List Item 1
+2. List Item 2
+3. List Item 3
+
+[Link](https://celer.app)
+
+![Image](https://github.com/manuanish.png?size=200)
+```
+
+---
+
+# Heading 1
+
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
+
+**Bold Text**
+
+_Italic Text_
+
+~~Strikethrough Text~~
+
+> Blockquote
+
+- List Item 1
+- List Item 2
+- List Item 3
+
+1. List Item 1
+2. List Item 2
+3. List Item 3
+
+[Link](https://celer.vercel.app)
+
+![Image](https://github.com/manuanish.png?size=200)
+
+### Learn More
+
+- [Markdown Guide](https://www.markdownguide.org/basic-syntax/)
+- [Markdown Cheatsheet](https://www.markdownguide.org/cheat-sheet/)
+
+---
+
+## LaTeX
+
+LaTeX is a document preparation system for high-quality typesetting.
+It is most often used for medium-to-large technical or scientific documents but it can be used for almost any form of publishing.
+
+### Inline LaTeX
+
+Inline LaTeX is written between dollar signs `$` and is rendered inline with the text.
+
+```md
+$e^{i\pi} + 1 = 0$
+```
+
+$e^{i\pi} + 1 = 0$
+
+### Block LaTeX
+
+Block LaTeX is written between double dollar signs `$$` and is rendered on a new line.
+
+```md
+$$
+
+\begin{align}
+  \frac{d}{dx} \int_{a}^{x} f(t) \,dt = f(x)
+\end{align}
+
+
+$$
+```
+
+<br />
+$$
+
+\begin{align}
+\frac{d}{dx} \int\_{a}^{x} f(t) \,dt = f(x)
+\end{align}
+
+$$
+
+---
+
+### Learn More
+- [LaTeX Math](https://www.latex-tutorial.com/tutorials/mathematics/)
+- [LaTeX Symbols](https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols)
+
+
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;
+$$
