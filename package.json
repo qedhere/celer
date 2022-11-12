@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dicebear/avatars": "^4.10.5",
+    "@dicebear/micah": "^4.10.5",
     "@geist-ui/core": "^2.3.8",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
