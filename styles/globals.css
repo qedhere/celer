@@ -33,3 +33,11 @@ a {
   -webkit-user-select: none;
   -ms-user-select: none;
 }
+
+article h1 {
+  @apply tracking-tighter;
+}
+
+article h2 {
+  @apply tracking-tighter;
+}

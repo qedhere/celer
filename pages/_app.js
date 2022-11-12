@@ -1,4 +1,6 @@
 import "inter-ui/inter.css";
+import "katex/dist/katex.min.css";
+import "@styles/one-dark.css";
 import "@styles/globals.css";
 
 import { GeistProvider, CssBaseline } from "@geist-ui/core";
