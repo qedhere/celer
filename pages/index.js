@@ -84,7 +84,7 @@ export default function Home() {
             className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center pb-[2px] mb-20 relative`}
           >
             <Link
-              href="/login"
+              href="/signup"
               className="flex justify-center items-center"
               style={{ color: "inherit" }}
             >
@@ -382,7 +382,7 @@ export default function Home() {
               className={`rounded-lg w-full max-w-[320px] xs:w-[196px] h-[48px] flex justify-center items-center pb-[2px] mb-20 relative`}
             >
               <Link
-                href="/login"
+                href="/signup"
                 className="flex justify-center items-center"
                 style={{ color: "inherit" }}
               >
