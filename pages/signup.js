@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { Header, Body } from "@components/web";
-import { useUser } from "@components/hooks";
 import { createAvatar } from "@dicebear/avatars";
 import { uid } from "uid";
 import * as style from "@dicebear/micah";
@@ -14,15 +13,20 @@ import {
   CheckIcon,
 } from "@primer/octicons-react";
 import { TbRefresh } from "react-icons/tb";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import { app } from "@lib/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const db = getFirestore(app);
 
 export default function SignUp() {
-  const { user, loading } = useUser();
-  const { setToast } = useToasts()
+  const { setToast } = useToasts();
   const [seed, setSeed] = React.useState(uid());
   const [currentPage, setCurrentPage] = React.useState(0);
   const [buttonStatus, setButtonStatus] = React.useState([0, 0]);
@@ -127,18 +131,33 @@ export default function SignUp() {
 
         const auth = getAuth();
 
-        createUserWithEmailAndPassword(auth, userNameInputValue + "@celer.vercel.app", passwordOneValue)
-          .then((userCredential) => {
-            // Signed in 
+        createUserWithEmailAndPassword(
+          auth,
+          userNameInputValue + "@celer.vercel.app",
+          passwordOneValue
+        )
+          .then(async (userCredential) => {
+            // Signed in
             const user = userCredential.user;
-            console.log('okay')
+
+            await setDoc(
+              doc(db, "users", userNameInputValue + "@celer.vercel.app"),
+              {
+                pictureSeed: seed,
+              }
+            );
+
             // ...
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            
-            setToast({ text: errorCode + ' ' + errorMessage, delay: 5000, type: 'error' })
+
+            setToast({
+              text: errorCode + " " + errorMessage,
+              delay: 5000,
+              type: "error",
+            });
             // ..
           });
       } else {
@@ -148,7 +167,7 @@ export default function SignUp() {
         setPasswordTwoErrorText("Passwords do not match.");
       }
     }
-  }
+  };
 
   const handleUsernameInputChange = (e) => {
     setUserNameError("");
