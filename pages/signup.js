@@ -5,7 +5,7 @@ import { createAvatar } from "@dicebear/avatars";
 import { uid } from "uid";
 import * as style from "@dicebear/micah";
 import Image from "next/image";
-import { Input, useToasts } from "@geist-ui/core";
+import { Input, useToasts, Link, Loading } from "@geist-ui/core";
 import {
   ArrowRightIcon,
   ArrowLeftIcon,
@@ -22,10 +22,12 @@ import {
 } from "firebase/firestore";
 import { app } from "@lib/firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/router";
 
 const db = getFirestore(app);
 
 export default function SignUp() {
+  const router = useRouter();
   const { setToast } = useToasts();
   const [seed, setSeed] = React.useState(uid());
   const [currentPage, setCurrentPage] = React.useState(0);
@@ -41,6 +43,8 @@ export default function SignUp() {
   const [passwordTwoValue, setPasswordTwoValue] = React.useState("");
   const [passwordTwoError, setPasswordTwoError] = React.useState("");
   const [passwordTwoErrorText, setPasswordTwoErrorText] = React.useState("");
+  const [ searchIcon, setSearchIcon ] = React.useState(<SearchIcon size={24} />);
+  const [ finishIcon, setFinishIcon ] = React.useState(<CheckIcon size={24} />);
   const [svg, setSvg] = React.useState(null);
 
   React.useEffect(() => {
@@ -92,13 +96,15 @@ export default function SignUp() {
       setUserNameErrorText("Username must be at least 3 characters long.");
     } else {
       // Check regex pattern
-      if (userNameInputValue.match(/^[a-zA-Z0-9]+$/)) {
+      if (userNameInputValue.match(/^[a-z0-9]+$/)) {
+        setSearchIcon(<Loading type="success"/>);
         const querySnapshot = await getDocs(collection(db, "users"));
         var docIdList = [];
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           docIdList.push(doc.id.slice(0, -17));
         });
+        setSearchIcon(<SearchIcon size={24} />);
 
         if (docIdList.includes(userNameInputValue)) {
           setUserNameError("error");
@@ -111,13 +117,13 @@ export default function SignUp() {
         }
       } else {
         setUserNameError("error");
-        setUserNameErrorText("Username can only contain letters and numbers.");
+        setUserNameErrorText("Username can only contain lowercase letters and numbers.");
       }
     }
   };
 
   const checkValidPassword = async () => {
-    if (passwordOneValue.length < 8 || passwordTwoValue.length < 8) {
+    if (passwordOneValue.length < 6 || passwordTwoValue.length < 6) {
       setPasswordOneError("error");
       setPasswordOneErrorText("Password must be at least 6 characters long.");
       setPasswordTwoError("error");
@@ -130,7 +136,7 @@ export default function SignUp() {
         setPasswordTwoErrorText("");
 
         const auth = getAuth();
-
+        setFinishIcon(<Loading type="success"/>);
         createUserWithEmailAndPassword(
           auth,
           userNameInputValue + "@celer.vercel.app",
@@ -140,14 +146,21 @@ export default function SignUp() {
             // Signed in
             const user = userCredential.user;
 
+            setToast({
+              text: "Logged In!",
+              type: "success",
+              delay: 5000,
+            });
+
             await setDoc(
               doc(db, "users", userNameInputValue + "@celer.vercel.app"),
               {
                 pictureSeed: seed,
               }
             );
+            setFinishIcon(<CheckIcon size={24} />);
 
-            // ...
+            router.push("/app");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -265,7 +278,7 @@ export default function SignUp() {
                 onClick={checkValidUsername}
                 className="bg-[#0070f320] hover:bg-[#0070f340] duration-200 rounded-full text-success-300 w-[40px] h-[40px] flex justify-center items-center"
               >
-                <SearchIcon size={24} />
+                {searchIcon}
               </button>
             </div>
           </div>
@@ -314,7 +327,7 @@ export default function SignUp() {
                 onClick={checkValidPassword}
                 className="bg-[#0070f320] hover:bg-[#0070f340] duration-200 rounded-full text-success-300 w-[40px] h-[40px] flex justify-center items-center"
               >
-                <CheckIcon size={24} />
+                {finishIcon}
               </button>
             </div>
           </div>
@@ -354,6 +367,11 @@ export default function SignUp() {
                 <ArrowRightIcon size={24} />
               </button>
             )}
+          </div>
+          <div className="text-center text-sm mt-10">
+            <Link href="/login" underline color>
+              I already have an account. Take me to the log in page!
+            </Link>
           </div>
         </div>
       </Body>
