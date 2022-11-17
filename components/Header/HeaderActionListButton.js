@@ -10,7 +10,7 @@ export default function HeaderActionListButton(props) {
         target="_blank"
         style={{ color: "inherit" }}
       >
-        <button className="flex justify-center gap-1 items-center pt-2 pb-2 pl-4 pr-4 dark:bg-black-800 dark:hover:bg-neutral-800 rounded-md duration-200 text-sm w-fit bg-neutral-100 hover:bg-neutral-200 text-neutral-600 dark:text-black-400">
+        <button className="flex justify-center gap-1 items-center pt-2 pb-2 pl-4 pr-4 rounded-md duration-200 text-sm w-fit bg-neutral-100 hover:bg-neutral-200 text-neutral-600 ">
           <div>{props.icon}</div>
           <div className="grow"></div>
           <div>{props.children}</div>
@@ -20,7 +20,7 @@ export default function HeaderActionListButton(props) {
   } else {
     return (
       <Link href={props.href} passHref style={{ color: "inherit" }}>
-        <button className="flex justify-center gap-1 items-center pt-2 pb-2 pl-4 pr-4 dark:bg-black-800 dark:hover:bg-neutral-800 rounded-md duration-200 text-sm w-fit bg-neutral-100 hover:bg-neutral-200 text-neutral-600 dark:text-black-400">
+        <button className="flex justify-center gap-1 items-center pt-2 pb-2 pl-4 pr-4 rounded-md duration-200 text-sm w-fit bg-neutral-100 hover:bg-neutral-200 text-neutral-600 ">
           <div>{props.icon}</div>
           <div className="grow"></div>
           <div>{props.children}</div>

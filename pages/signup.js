@@ -90,7 +90,8 @@ export default function SignUp() {
     }
   };
 
-  const checkValidUsername = async () => {
+  const checkValidUsername = async (e) => {
+    e.preventDefault();
     if (userNameInputValue.length < 3) {
       setUserNameError("error");
       setUserNameErrorText("Username must be at least 3 characters long.");
@@ -124,7 +125,8 @@ export default function SignUp() {
     }
   };
 
-  const checkValidPassword = async () => {
+  const checkValidPassword = async (e) => {
+    e.preventDefault();
     if (passwordOneValue.length < 6 || passwordTwoValue.length < 6) {
       setPasswordOneError("error");
       setPasswordOneErrorText("Password must be at least 6 characters long.");
@@ -255,15 +257,19 @@ export default function SignUp() {
             </div>
             <div className="mt-20 flex justify-center items-center">
               <div className="max-w-[320px]">
-                <div className="flex items-center gap-2">
-                  <Input
-                    placeholder="octocat"
-                    width="275px"
-                    onChange={handleUsernameInputChange}
-                    value={userNameInputValue}
-                    type={userNameError}
-                  ></Input>
-                </div>
+                <form onSubmit={checkValidUsername}>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      placeholder="octocat"
+                      width="275px"
+                      onChange={handleUsernameInputChange}
+                      value={userNameInputValue}
+                      type={userNameError}
+                    ></Input>
+                  </div>
+                  <input type="submit" hidden onSubmit={checkValidUsername} />
+                </form>
+
                 <div className="flex">
                   <div className="text-error-300 text-xs mt-2">
                     {userNameErrorText == "" ? (
@@ -297,35 +303,38 @@ export default function SignUp() {
               Which should be a secret.
             </div>
             <div className="mt-20 flex justify-center items-center">
-              <div className="max-w-[320px]">
-                <div className="flex items-center gap-2">
-                  <Input.Password
-                    placeholder="Your password"
-                    width="275px"
-                    onChange={handlePasswordOneChange}
-                    value={passwordOneValue}
-                    type={passwordOneError}
-                  ></Input.Password>
-                </div>
-                <div className="flex items-center gap-2 mt-2">
-                  <Input.Password
-                    placeholder="Confirm password"
-                    width="275px"
-                    onChange={handlePasswordTwoChange}
-                    value={passwordTwoValue}
-                    type={passwordTwoError}
-                  ></Input.Password>
-                </div>
-                <div className="flex">
-                  <div className="text-error-300 text-xs mt-2">
-                    {passwordTwoErrorText == "" ? (
-                      <div>&nbsp;</div>
-                    ) : (
-                      passwordTwoErrorText
-                    )}
+              <form onSubmit={checkValidPassword}>
+                <div className="max-w-[320px]">
+                  <div className="flex items-center gap-2">
+                    <Input.Password
+                      placeholder="Your password"
+                      width="275px"
+                      onChange={handlePasswordOneChange}
+                      value={passwordOneValue}
+                      type={passwordOneError}
+                    ></Input.Password>
+                  </div>
+                  <div className="flex items-center gap-2 mt-2">
+                    <Input.Password
+                      placeholder="Confirm password"
+                      width="275px"
+                      onChange={handlePasswordTwoChange}
+                      value={passwordTwoValue}
+                      type={passwordTwoError}
+                    ></Input.Password>
+                  </div>
+                  <div className="flex">
+                    <div className="text-error-300 text-xs mt-2">
+                      {passwordTwoErrorText == "" ? (
+                        <div>&nbsp;</div>
+                      ) : (
+                        passwordTwoErrorText
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
+                <input type="submit" hidden onSubmit={checkValidPassword} />
+              </form>
             </div>
             <div className="w-full flex justify-center mt-20">
               <button

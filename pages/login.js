@@ -32,7 +32,8 @@ export default function SignUp() {
   const [passwordError, setPasswordError] = React.useState("");
   const [errorText, setErrorText] = React.useState("");
 
-  const loginUser = async () => {
+  const loginUser = async (e) => {
+    e.preventDefault();
     setLogInIcon(<Loading type="success" />);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, username + "@celer.vercel.app", password)
@@ -87,24 +88,27 @@ export default function SignUp() {
           </div>
           <div className="mt-20 flex justify-center items-center">
             <div className="max-w-[320px]">
-              <div className="flex items-center gap-2">
-                <Input
-                  placeholder="Username"
-                  width="275px"
-                  onChange={onUsernameChange}
-                  value={username}
-                  type={usernameError}
-                ></Input>
-              </div>
-              <div className="flex items-center gap-2 mt-2">
-                <Input.Password
-                  placeholder="Password"
-                  width="275px"
-                  onChange={onPasswordChange}
-                  value={password}
-                  type={passwordError}
-                ></Input.Password>
-              </div>
+              <form onSubmit={loginUser}>
+                <div className="flex items-center gap-2">
+                  <Input
+                    placeholder="Username"
+                    width="275px"
+                    onChange={onUsernameChange}
+                    value={username}
+                    type={usernameError}
+                  ></Input>
+                </div>
+                <div className="flex items-center gap-2 mt-2">
+                  <Input.Password
+                    placeholder="Password"
+                    width="275px"
+                    onChange={onPasswordChange}
+                    value={password}
+                    type={passwordError}
+                  ></Input.Password>
+                </div>
+                <input type="submit" hidden onSubmit={loginUser} />
+              </form>
               <div className="flex">
                 <div className="text-error-300 text-xs mt-2">
                   {errorText == "" ? <div>&nbsp;</div> : errorText}
@@ -112,7 +116,7 @@ export default function SignUp() {
               </div>
               <div className="w-full flex justify-center mt-20">
                 <button
-                  type="success"
+                  type="submit"
                   onClick={loginUser}
                   className="bg-[#0070f320] hover:bg-[#0070f340] duration-200 rounded-full text-success-300 w-[40px] h-[40px] flex justify-center items-center"
                 >
