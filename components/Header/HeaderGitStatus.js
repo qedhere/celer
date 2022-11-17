@@ -24,7 +24,7 @@ export default function HeaderGitStatus() {
             {gitStatus.commit.sha.substr(0, 8)}
           </div>
         </div>
-        <div className="text-sm truncate mt-2 dark:text-black-500 text-gray-500">
+        <div className="text-sm truncate mt-2 text-gray-500">
           {gitStatus.commit.commit.message}
         </div>
       </div>
