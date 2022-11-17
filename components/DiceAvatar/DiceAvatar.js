@@ -29,9 +29,15 @@ export default function DiceAvatar(props) {
 
   if (svg) {
     return (
-      <Image src={svg} width={props.size} height={props.size} alt="Avatar" className="rounded-full" />
+      <Image
+        src={svg}
+        width={props.size}
+        height={props.size}
+        alt="Avatar"
+        className="rounded-full border"
+      />
     );
   } else {
-    return <div style={{ width: props.size, height: props.size }}></div>;
+    return <div style={{ width: props.size, height: props.size }} className="rounded-full border"></div>;
   }
 }
