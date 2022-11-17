@@ -1,5 +1,5 @@
 import { useUser } from "@components/hooks";
-import { Button, useToasts } from "@geist-ui/core";
+import { Button, useToasts, Loading } from "@geist-ui/core";
 import { useRouter } from "next/router";
 import { app } from "@lib/firebase";
 import { getAuth, signOut } from "firebase/auth";
@@ -30,7 +30,20 @@ export default function App() {
         router.push("/login");
       });
   };
-  if (loading) return <div>Loading...</div>;
+  if (loading) return (
+    <div>
+      <Meta
+        title="Celer | App"
+        description="🚀 Instantly share beautiful notes, latex, markdown, and more!"
+      />
+      <Header />
+      <Body>
+        <div className="w-full mt-[256px]">
+          <Loading/>
+        </div>
+      </Body>
+    </div>
+  )
   if (!user)
     return (
       <div>
@@ -61,8 +74,19 @@ export default function App() {
     );
   return (
     <div>
-      Logged in as {user.email.slice(0, user.email.indexOf("@"))}
-      <Button onClick={logOut}>Log Out</Button>
+      <Meta
+        title="Celer | App"
+        description="🚀 Instantly share beautiful notes, latex, markdown, and more!"
+      />
+      <Header />
+      <Body>
+        <div className="w-full mt-[256px]">
+          <div>
+            Logged in as {user.email.slice(0, user.email.indexOf("@"))}
+            <Button onClick={logOut}>Log Out</Button>
+          </div>
+        </div>
+      </Body>
     </div>
   );
 }
