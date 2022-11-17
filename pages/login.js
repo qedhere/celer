@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import { Header, Body } from "@components/web";
-import { Input, useToasts, Link } from "@geist-ui/core";
-import { app } from "@lib/firebase";
+import { Header, Body, Meta } from "@components/web";
+import { Input, useToasts, Link, Loading } from "@geist-ui/core";
 import { CheckIcon } from "@primer/octicons-react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
+import { app } from "@lib/firebase";
 
 export default function SignUp() {
   const router = useRouter();
@@ -13,6 +13,8 @@ export default function SignUp() {
 
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const [logInIcon, setLogInIcon] = React.useState(<CheckIcon size={24} />);
 
   const onUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -31,6 +33,7 @@ export default function SignUp() {
   const [errorText, setErrorText] = React.useState("");
 
   const loginUser = async () => {
+    setLogInIcon(<Loading type="success" />);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, username + "@celer.vercel.app", password)
       .then((userCredential) => {
@@ -40,6 +43,7 @@ export default function SignUp() {
           type: "success",
           delay: 5000,
         });
+        setLogInIcon(<CheckIcon size={24} />);
         router.push("/app");
         // ...
       })
@@ -53,6 +57,9 @@ export default function SignUp() {
         } else if (error.code === "auth/wrong-password") {
           setErrorText("Incorrect password");
           setPasswordError("error");
+        } else if (error.code === "auth/internal-error") {
+          setErrorText("No password provided");
+          setPasswordError("error");
         } else {
           setToast({
             text: error.code + " " + error.message,
@@ -60,10 +67,15 @@ export default function SignUp() {
             delay: 5000,
           });
         }
+        setLogInIcon(<CheckIcon size={24} />);
       });
   };
   return (
     <div>
+      <Meta
+        title="Celer | Log In"
+        description="🚀 Instantly share beautiful notes, latex, markdown, and more!"
+      />
       <Header />
       <Body>
         <div className="w-full mt-[256px] h-[420px]">
@@ -104,7 +116,7 @@ export default function SignUp() {
                   onClick={loginUser}
                   className="bg-[#0070f320] hover:bg-[#0070f340] duration-200 rounded-full text-success-300 w-[40px] h-[40px] flex justify-center items-center"
                 >
-                  <CheckIcon size={24} />
+                  {logInIcon}
                 </button>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Header, Body } from "@components/web";
+import { Header, Body, Meta } from "@components/web";
 import { createAvatar } from "@dicebear/avatars";
 import { uid } from "uid";
 import * as style from "@dicebear/micah";
@@ -43,8 +43,8 @@ export default function SignUp() {
   const [passwordTwoValue, setPasswordTwoValue] = React.useState("");
   const [passwordTwoError, setPasswordTwoError] = React.useState("");
   const [passwordTwoErrorText, setPasswordTwoErrorText] = React.useState("");
-  const [ searchIcon, setSearchIcon ] = React.useState(<SearchIcon size={24} />);
-  const [ finishIcon, setFinishIcon ] = React.useState(<CheckIcon size={24} />);
+  const [searchIcon, setSearchIcon] = React.useState(<SearchIcon size={24} />);
+  const [finishIcon, setFinishIcon] = React.useState(<CheckIcon size={24} />);
   const [svg, setSvg] = React.useState(null);
 
   React.useEffect(() => {
@@ -97,7 +97,7 @@ export default function SignUp() {
     } else {
       // Check regex pattern
       if (userNameInputValue.match(/^[a-z0-9]+$/)) {
-        setSearchIcon(<Loading type="success"/>);
+        setSearchIcon(<Loading type="success" />);
         const querySnapshot = await getDocs(collection(db, "users"));
         var docIdList = [];
         querySnapshot.forEach((doc) => {
@@ -117,7 +117,9 @@ export default function SignUp() {
         }
       } else {
         setUserNameError("error");
-        setUserNameErrorText("Username can only contain lowercase letters and numbers.");
+        setUserNameErrorText(
+          "Username can only contain lowercase letters and numbers."
+        );
       }
     }
   };
@@ -136,7 +138,7 @@ export default function SignUp() {
         setPasswordTwoErrorText("");
 
         const auth = getAuth();
-        setFinishIcon(<Loading type="success"/>);
+        setFinishIcon(<Loading type="success" />);
         createUserWithEmailAndPassword(
           auth,
           userNameInputValue + "@celer.vercel.app",
@@ -209,6 +211,10 @@ export default function SignUp() {
 
   return (
     <div>
+      <Meta
+        title="Celer | Sign Up"
+        description="🚀 Instantly share beautiful notes, latex, markdown, and more!"
+      />
       <Header />
       <Body>
         {currentPage == 0 ? (
