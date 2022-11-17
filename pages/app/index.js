@@ -30,20 +30,21 @@ export default function App() {
         router.push("/login");
       });
   };
-  if (loading) return (
-    <div>
-      <Meta
-        title="Celer | App"
-        description="🚀 Instantly share beautiful notes, latex, markdown, and more!"
-      />
-      <Header />
-      <Body>
-        <div className="w-full mt-[256px]">
-          <Loading/>
-        </div>
-      </Body>
-    </div>
-  )
+  if (loading)
+    return (
+      <div>
+        <Meta
+          title="Celer | App"
+          description="🚀 Instantly share beautiful notes, latex, markdown, and more!"
+        />
+        <Header />
+        <Body>
+          <div className="w-full mt-[256px]">
+            <Loading />
+          </div>
+        </Body>
+      </div>
+    );
   if (!user)
     return (
       <div>
