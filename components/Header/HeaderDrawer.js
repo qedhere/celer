@@ -52,8 +52,6 @@ export default function HeaderDrawer(props) {
               <div className="h-full flex items-center"></div>
             </div>
             <HeaderActionList />
-            <div className="mt-5"></div>
-            <HeaderGitStatus />
           </div>
         </Drawer.Content>
       </Drawer>
@@ -78,9 +76,7 @@ export default function HeaderDrawer(props) {
               <div className="grow"></div>
               <div className="h-full flex items-center"></div>
             </div>
-            <HeaderActionList />
-            <div className="mt-5"></div>
-            <HeaderGitStatus />
+            <HeaderActionList loggedIn/>
           </div>
         </Drawer.Content>
       </Drawer>

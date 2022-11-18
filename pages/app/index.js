@@ -84,7 +84,7 @@ export default function App() {
       <Header />
       <Body>
         <div className="w-full mt-[256px]">
-          <div className="flex mb-10 xs:justify-start justify-center items-center w-full gap-5">
+          <div className="flex mb-10 xs:justify-start items-center w-full gap-5 flex-wrap">
             <div className="w-[90px] h-[90px]"><DiceAvatar user={user.email} size={90} /></div>
             <div>
               <div className="text-2xl font-bold tracking-tight">{user.email.slice(0, user.email.indexOf("@"))}</div>
@@ -96,6 +96,10 @@ export default function App() {
                 <div className="flex items-center gap-2"><HeartIcon/> {data.totalViews}</div>
                 <div className="flex items-center gap-2"><CommentDiscussionIcon/> {data.totalViews}</div>
               </div>
+            </div>
+            <div className="grow h-full min-w-[200px] flex justify-center sm:max-w-none">
+              <textarea placeholder="About me (Click to edit)" className="placeholder:text-gray-400 w-full h-[80px] text-sm p-0 m-0 resize-none rounded-lg p-2 focus:ring duration-200 ring-gray-200">
+              </textarea>
             </div>
           </div>
 
