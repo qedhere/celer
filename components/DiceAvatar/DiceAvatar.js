@@ -14,8 +14,6 @@ export default function DiceAvatar(props) {
     const fetchPfpHash = async () => {
       const docRef = doc(db, "users", props.user);
       const docSnap = await getDoc(docRef);
-
-      console.log(docSnap.data());
       setSvg(
         createAvatar(style, {
           seed: docSnap.data().pictureSeed,
@@ -28,15 +26,27 @@ export default function DiceAvatar(props) {
   }, []);
 
   if (svg) {
-    return (
-      <Image
-        src={svg}
-        width={props.size}
-        height={props.size}
-        alt="Avatar"
-        className="rounded-full border"
-      />
-    );
+    if (props.noBorder){
+      return (
+        <Image
+          src={svg}
+          width={props.size}
+          height={props.size}
+          alt="Avatar"
+          className="rounded-full"
+        />
+      );
+    } else {
+      return (
+        <Image
+          src={svg}
+          width={props.size}
+          height={props.size}
+          alt="Avatar"
+          className="rounded-full border"
+        />
+      );
+    }
   } else {
     return <div style={{ width: props.size, height: props.size }} className="rounded-full border"></div>;
   }

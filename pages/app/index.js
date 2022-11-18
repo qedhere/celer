@@ -3,12 +3,14 @@ import { Button, useToasts, Loading } from "@geist-ui/core";
 import { useRouter } from "next/router";
 import { app } from "@lib/firebase";
 import { getAuth, signOut } from "firebase/auth";
-import { Header, Body, Meta } from "@components/web";
+import { Header, Body, Meta, DiceAvatar } from "@components/web";
+import { EyeIcon, RepoIcon, HeartIcon, CommentDiscussionIcon } from "@primer/octicons-react"
+import moment from 'moment';
 
 export default function App() {
   const router = useRouter();
   const { setToast } = useToasts();
-  const { user, loading } = useUser();
+  const { user, loading, data } = useUser();
 
   const logOut = () => {
     const auth = getAuth();
@@ -82,10 +84,22 @@ export default function App() {
       <Header />
       <Body>
         <div className="w-full mt-[256px]">
-          <div>
-            Logged in as {user.email.slice(0, user.email.indexOf("@"))}
-            <Button onClick={logOut}>Log Out</Button>
+          <div className="flex mb-10 xs:justify-start justify-center items-center w-full gap-5">
+            <div className="w-[90px] h-[90px]"><DiceAvatar user={user.email} size={90} /></div>
+            <div>
+              <div className="text-2xl font-bold tracking-tight">{user.email.slice(0, user.email.indexOf("@"))}</div>
+              <div className="text-sm text-gray-500">Joined {moment(new Date(user.metadata.creationTime)).fromNow()}</div>
+              <div className="text-sm text-gray-500">Last login {moment(new Date(user.metadata.lastSignInTime)).fromNow()}</div>
+              <div className="flex items-center gap-5 text-xs text-gray-500 mt-2">
+                <div className="flex items-center gap-2"><RepoIcon/> {data.totalNotes}</div>
+                <div className="flex items-center gap-2"><EyeIcon/> {data.totalViews}</div>
+                <div className="flex items-center gap-2"><HeartIcon/> {data.totalViews}</div>
+                <div className="flex items-center gap-2"><CommentDiscussionIcon/> {data.totalViews}</div>
+              </div>
+            </div>
           </div>
+
+          <Button onClick={logOut} type="error" ghost>Log Out</Button>
         </div>
       </Body>
     </div>
