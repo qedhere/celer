@@ -26,7 +26,7 @@ export default function DiceAvatar(props) {
   }, []);
 
   if (svg) {
-    if (props.noBorder){
+    if (props.noBorder) {
       return (
         <Image
           src={svg}
@@ -48,6 +48,11 @@ export default function DiceAvatar(props) {
       );
     }
   } else {
-    return <div style={{ width: props.size, height: props.size }} className="rounded-full border"></div>;
+    return (
+      <div
+        style={{ width: props.size, height: props.size }}
+        className="rounded-full border"
+      ></div>
+    );
   }
 }

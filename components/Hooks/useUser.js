@@ -5,7 +5,6 @@ import { app } from "@lib/firebase";
 
 const db = getFirestore(app);
 
-
 export default function useUser() {
   const auth = getAuth();
   const [user, setUser] = React.useState(null);
@@ -18,7 +17,7 @@ export default function useUser() {
         setUser(user);
         const docRef = doc(db, "users", user.email);
         const docSnap = await getDoc(docRef);
-        setData(docSnap.data())
+        setData(docSnap.data());
       } else {
         setUser(false);
       }

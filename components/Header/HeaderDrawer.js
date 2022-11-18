@@ -76,7 +76,7 @@ export default function HeaderDrawer(props) {
               <div className="grow"></div>
               <div className="h-full flex items-center"></div>
             </div>
-            <HeaderActionList loggedIn/>
+            <HeaderActionList loggedIn />
           </div>
         </Drawer.Content>
       </Drawer>

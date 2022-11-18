@@ -6,6 +6,9 @@ import { CheckIcon } from "@primer/octicons-react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { app } from "@lib/firebase";
+import { getFirestore, doc, updateDoc } from "firebase/firestore";
+
+const db = getFirestore(app);
 
 export default function SignUp() {
   const router = useRouter();
@@ -37,12 +40,17 @@ export default function SignUp() {
     setLogInIcon(<Loading type="success" />);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, username + "@celer.vercel.app", password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Signed in
         setToast({
           text: "Logged In!",
           type: "success",
           delay: 5000,
+        });
+        const userDataRef = doc(db, "users", username + "@celer.vercel.app");
+
+        await updateDoc(userDataRef, {
+          lastLogin: new Date().toString(),
         });
         setLogInIcon(<CheckIcon size={24} />);
         router.push("/app");

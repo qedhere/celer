@@ -165,7 +165,9 @@ export default function SignUp() {
                 totalComments: 0,
                 totalNotes: 0,
                 aboutMe: "",
-                notes: null
+                notes: null,
+                joinedDate: new Date().toString(),
+                lastLogin: new Date().toString(),
               }
             );
             setFinishIcon(<CheckIcon size={24} />);

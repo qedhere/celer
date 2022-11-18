@@ -13,7 +13,7 @@ import * as React from "react";
 import HeaderActionListButton from "./HeaderActionListButton";
 import HeaderGitStatus from "./HeaderGitStatus";
 import { getAuth, signOut } from "firebase/auth";
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
 import { useToasts } from "@geist-ui/core";
 
 export default function HeaderActionList(props) {
@@ -39,7 +39,7 @@ export default function HeaderActionList(props) {
         router.push("/login");
       });
   };
-  if (!props.loggedIn){
+  if (!props.loggedIn) {
     return (
       <div>
         <div className="flex flex-wrap gap-2 w-full mt-5">
@@ -72,17 +72,10 @@ export default function HeaderActionList(props) {
           >
             Source Code
           </HeaderActionListButton>
-          <HeaderActionListButton
-            href="/signup"
-            public
-            icon={<PlusIcon />}
-          >
+          <HeaderActionListButton href="/signup" public icon={<PlusIcon />}>
             Sign Up
           </HeaderActionListButton>
-          <HeaderActionListButton
-            href="/login"
-            icon={<SignInIcon />}
-          >
+          <HeaderActionListButton href="/login" icon={<SignInIcon />}>
             Log in
           </HeaderActionListButton>
         </div>
@@ -136,5 +129,4 @@ export default function HeaderActionList(props) {
       </div>
     );
   }
-
 }
