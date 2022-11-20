@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useUser } from "@components/hooks";
-import { Button, useToasts, Loading } from "@geist-ui/core";
+import { Button, useToasts, Loading, Divider } from "@geist-ui/core";
 import { useRouter } from "next/router";
 import { app } from "@lib/firebase";
 import { getAuth, signOut } from "firebase/auth";
@@ -10,10 +10,13 @@ import {
   RepoIcon,
   HeartIcon,
   CommentDiscussionIcon,
+  FeedRepoIcon,
+  PlusIcon,
 } from "@primer/octicons-react";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import { doc, updateDoc, getFirestore } from "firebase/firestore";
+import Image from "next/image";
 
 const db = getFirestore(app);
 
@@ -112,7 +115,7 @@ export default function App() {
       <Header />
       <Body>
         <div className="w-full mt-[256px]">
-          <div className="flex mb-10 xs:justify-start items-center w-full gap-5 flex-wrap">
+          <div className="flex mb-10 xs:justify-start items-center w-full gap-10 flex-wrap">
             <div className="w-[90px] h-[90px]">
               <DiceAvatar user={user.email} size={90} />
             </div>
@@ -158,11 +161,27 @@ export default function App() {
               </div>
             </div>
           </div>
-
-          <Button onClick={logOut} type="error" ghost>
-            Log Out
-          </Button>
+          <div className="flex gap-2 mb-10">
+            <button onClick={() => router.push("/users/" + user.email.slice(0, user.email.indexOf("@")))} className="bg-black-900 text-white pl-4 pr-4 pt-1 border border-black-900 pb-1 text-sm rounded-full hover:bg-transparent hover:text-black-900 duration-200">
+              View Profile
+            </button>
+            <button onClick={logOut} className="bg-[#e00e0020] text-error-200 pl-4 pr-4 pt-1 pb-1 text-sm rounded-full hover:bg-[#e00e0030] duration-200">
+              Log Out
+            </button>
+          </div>
+          <div className="mt-20 flex">
+            <div className="text-2xl flex gap-2 items-center tracking-tighter font-bold"><FeedRepoIcon size={24} className=""/>My Notes</div>
+            <div className="grow"></div>
+          </div>
+          <div className="min-h-[300px] w-full flex flex-col justify-center items-center relative">
+            <div className="w-full flex justify-center"><Image src="/mona-loading.gif" width={75} height={75} alt="Loading GIF"/></div>
+            <div className="text-gray-500 text-sm mt-5">You have no notes yet. Create one!</div>
+            <div className="absolute right-0 bottom-0">
+            <button className="bg-[transparent] w-[45px] h-[45px] rounded-full flex items-center border border-2 border-success-100 justify-center hover:bg-[#0070f320] duration-200 hover:border-solid"><PlusIcon className="text-success-300" size={24}/></button>
+            </div>
+          </div>
         </div>
+        <div className="w-full h-[200px] "></div>
       </Body>
     </div>
   );

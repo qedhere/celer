@@ -28,7 +28,7 @@ export default function UserProfile() {
         if (docSnap.exists()) {
           setLoading(false);
           setData(docSnap.data());
-          console.log(data)
+          console.log(data);
         } else {
           setLoading(false);
         }
@@ -36,7 +36,7 @@ export default function UserProfile() {
       };
       fetchData();
     }
-  }, [router.query.user]);
+  }, [router.query.user, userName, data]);
 
   if (!loading) {
     if (data) {
@@ -79,9 +79,9 @@ export default function UserProfile() {
                   </div>
                 </div>
                 <div className="grow h-full min-w-[200px] flex justify-center sm:max-w-none relative group">
-                  <div
-                    className="placeholder:text-gray-400 w-full h-[80px] text-sm p-0 m-0 resize-none rounded-lg p-2 focus:ring duration-500 ring-gray-100 overflow-hidden"
-                  >{data.aboutMe}</div>
+                  <div className="placeholder:text-gray-400 w-full h-[80px] text-sm p-0 m-0 resize-none rounded-lg p-2 focus:ring duration-500 ring-gray-100 overflow-hidden">
+                    {data.aboutMe}
+                  </div>
                 </div>
               </div>
             </div>
