@@ -160,6 +160,14 @@ export default function SignUp() {
               doc(db, "users", userNameInputValue + "@celer.vercel.app"),
               {
                 pictureSeed: seed,
+                totalViews: 0,
+                totalLikes: 0,
+                totalComments: 0,
+                totalNotes: 0,
+                aboutMe: "",
+                notes: null,
+                joinedDate: new Date().toString(),
+                lastLogin: new Date().toString(),
               }
             );
             setFinishIcon(<CheckIcon size={24} />);
