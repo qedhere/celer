@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { app } from "@lib/firebase";
 import { getAuth, signOut } from "firebase/auth";
 import { Header, Body, Meta, DiceAvatar } from "@components/web";
+import { uid } from "uid";
 import {
   EyeIcon,
   RepoIcon,
@@ -13,6 +14,8 @@ import {
   FeedRepoIcon,
   PlusIcon,
   XIcon,
+  TagIcon,
+  ArrowRightIcon,
 } from "@primer/octicons-react";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
@@ -20,6 +23,8 @@ import { doc, updateDoc, getFirestore } from "firebase/firestore";
 import Image from "next/image";
 
 const db = getFirestore(app);
+
+const postID = uid();
 
 export default function App() {
   const router = useRouter();
@@ -30,16 +35,18 @@ export default function App() {
 
   const updateTags = (e) => {
     e.preventDefault();
-    if (0 < tagInput.length && tagInput.length < 25) {
-      // Check Regex
-      if (tagInput.match(/^[a-zA-Z0-9]+$/)) {
-        // Check if tag already exists
-        if (!tagList.includes(tagInput)) {
-          setTagList([...tagList, tagInput]);
-          setTagInput("");
+    
+    if (tagList.length < 7) {
+      if (0 < tagInput.length && tagInput.length < 25) {
+        if (tagInput.match(/^[a-zA-Z0-9]+$/)) {
+          if (!tagList.includes(tagInput)) {
+            setTagList([...tagList, tagInput]);
+            setTagInput("");
+          }
         }
       }
     }
+    
   };
 
   if (loading)
@@ -95,9 +102,11 @@ export default function App() {
       <Body>
         <div className="w-full mt-[256px]">
           <div>
+            <div className="font-mono text-sm text-gray-500">{postID}</div>
+            <input className="placeholder:text-gray-300 text-5xl font-bold tracking-tighter mb-5 w-full" placeholder="Note Title"></input>
             <form onSubmit={updateTags}>
-              <div className="flex flex-wrap border rounded-xl focus:border-success-300 p-4">
-                <div className="flex gap-2 flex-wrap">
+              <div className="flex flex-wrap rounded-xl w-fit">
+                <div className="flex gap-2 flex-wrap w-fit">
                   {tagList.map((tag) => (
                     <div className="flex items-center gap-2" key={tag}>
                       <div className="text-sm font-semibold text-gray-500 bg-gray-100 pl-4 pr-4 pt-1 pb-1 rounded-full flex items-center gap-2">
@@ -116,8 +125,8 @@ export default function App() {
                 </div>
                 {tagList.length === 0 ? (
                   <input
-                    className=""
-                    placeholder="Add some tags!"
+                    className=" placeholder:text-gray-400 text-sm"
+                    placeholder="Add some tags! (max 7)"
                     value={tagInput}
                     onChange={(e) => {
                       if (e.target.value.length < 25) {
@@ -127,7 +136,7 @@ export default function App() {
                   ></input>
                 ) : (
                   <input
-                    className="ml-2 w-fit"
+                    className="ml-2 w-fit placeholder:text-gray-400 text-sm"
                     value={tagInput}
                     onChange={(e) => {
                       if (e.target.value.length < 25) {
