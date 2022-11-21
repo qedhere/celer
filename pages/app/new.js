@@ -12,6 +12,7 @@ import {
   CommentDiscussionIcon,
   FeedRepoIcon,
   PlusIcon,
+  XIcon,
 } from "@primer/octicons-react";
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
@@ -25,10 +26,20 @@ export default function App() {
   const { setToast } = useToasts();
   const { user, loading, data } = useUser();
   const [tagList, setTagList] = React.useState([]);
+  const [tagInput, setTagInput] = React.useState("");
 
   const updateTags = (e) => {
     e.preventDefault();
-    console.log(e.target[0].value);
+    if (0 < tagInput.length && tagInput.length < 25) {
+      // Check Regex
+      if (tagInput.match(/^[a-zA-Z0-9]+$/)) {
+        // Check if tag already exists
+        if (!tagList.includes(tagInput)) {
+          setTagList([...tagList, tagInput]);
+          setTagInput("");
+        }
+      }
+    }
   };
 
   if (loading)
@@ -85,8 +96,46 @@ export default function App() {
         <div className="w-full mt-[256px]">
           <div>
             <form onSubmit={updateTags}>
-              <div className="flex border">
-                <input className=""></input>
+              <div className="flex flex-wrap border rounded-xl focus:border-success-300 p-4">
+                <div className="flex gap-2 flex-wrap">
+                  {tagList.map((tag) => (
+                    <div className="flex items-center gap-2" key={tag}>
+                      <div className="text-sm font-semibold text-gray-500 bg-gray-100 pl-4 pr-4 pt-1 pb-1 rounded-full flex items-center gap-2">
+                        {tag}
+                        <div
+                          className="text-gray-300 hover:text-gray-500 duration-200"
+                          onClick={() => {
+                            setTagList(tagList.filter((item) => item !== tag));
+                          }}
+                        >
+                          <XIcon />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {tagList.length === 0 ? (
+                  <input
+                    className=""
+                    placeholder="Add some tags!"
+                    value={tagInput}
+                    onChange={(e) => {
+                      if (e.target.value.length < 25) {
+                        setTagInput(e.target.value);
+                      }
+                    }}
+                  ></input>
+                ) : (
+                  <input
+                    className="ml-2 w-fit"
+                    value={tagInput}
+                    onChange={(e) => {
+                      if (e.target.value.length < 25) {
+                        setTagInput(e.target.value);
+                      }
+                    }}
+                  ></input>
+                )}
               </div>
             </form>
           </div>
