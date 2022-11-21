@@ -28,7 +28,6 @@ export default function UserProfile() {
         if (docSnap.exists()) {
           setLoading(false);
           setData(docSnap.data());
-          console.log(data);
         } else {
           setLoading(false);
         }
