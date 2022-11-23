@@ -53,26 +53,17 @@ export default function App() {
     } else if (titleValue > 64) {
       setTitleErrorText("Title cannot be longer than 64 characters.");
     } else {
-      await setDoc(
-        doc(
-          db,
-          "users",
-          user.email,
-          "notes",
-          postID
-        ),
-        {
-          title: titleValue,
-          content: textAreaValue,
-          likes: 0,
-          views: 0,
-          tags: tagList,
-          timestamp: new Date().toString(),
-        }
-      );
+      await setDoc(doc(db, "users", user.email, "notes", postID), {
+        title: titleValue,
+        content: textAreaValue,
+        likes: 0,
+        views: 0,
+        tags: tagList,
+        timestamp: new Date().toString(),
+      });
 
       var updatedTags = data.tags;
-      
+
       // Check if tag list is empty
       if (tagList.length > 0) {
         for (var i in tagList) {
@@ -89,19 +80,11 @@ export default function App() {
         updatedTags["Unlisted"].push(postID);
       }
 
-      await updateDoc(
-        doc(
-          db,
-          "users",
-          user.email
-        ),
-        {
-          tags: updatedTags,
-        },
-      );
+      await updateDoc(doc(db, "users", user.email), {
+        tags: updatedTags,
+      });
 
       // router.push("/" + user.email.slice(0, user.email.indexOf("@")) + "/" + postID);
-      
     }
   };
 

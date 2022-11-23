@@ -168,8 +168,8 @@ export default function SignUp() {
                 joinedDate: new Date().toString(),
                 lastLogin: new Date().toString(),
                 tags: {
-                  "Unlisted" : [],
-                }
+                  Unlisted: [],
+                },
               }
             );
 

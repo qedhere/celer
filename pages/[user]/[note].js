@@ -23,12 +23,18 @@ export default function UserProfile() {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const docRef = doc(db, "users", userName + "@celer.vercel.app", "notes", noteId);
+      const docRef = doc(
+        db,
+        "users",
+        userName + "@celer.vercel.app",
+        "notes",
+        noteId
+      );
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setLoading(false);
         setData(docSnap.data());
-        console.log(data)
+        console.log(data);
       } else {
         setLoading(false);
       }
@@ -37,7 +43,7 @@ export default function UserProfile() {
 
     if (userName) {
       if (noteId) {
-          fetchData();
+        fetchData();
       }
     }
   }, [userName, noteId]);
