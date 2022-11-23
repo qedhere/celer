@@ -151,7 +151,7 @@ export default function SignUp() {
             const user = userCredential.user;
 
             setToast({
-              text: "Logged In!",
+              text: "Setting up your account...",
               type: "success",
               delay: 5000,
             });
@@ -165,11 +165,36 @@ export default function SignUp() {
                 totalComments: 0,
                 totalNotes: 0,
                 aboutMe: "",
-                notes: null,
                 joinedDate: new Date().toString(),
                 lastLogin: new Date().toString(),
+                tags: {
+                  "Unlisted" : [],
+                }
               }
             );
+
+            await setDoc(
+              doc(
+                db,
+                "users",
+                userNameInputValue + "@celer.vercel.app",
+                "notes",
+                "default"
+              ),
+              {
+                title: "Welcome to Celer!",
+                content: "This is note has been auto-generated.",
+                likes: 0,
+                views: 0,
+              }
+            );
+
+            setToast({
+              text: "Logged In!",
+              type: "success",
+              delay: 5000,
+            });
+
             setFinishIcon(<CheckIcon size={24} />);
 
             router.push("/app");

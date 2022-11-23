@@ -164,9 +164,7 @@ export default function App() {
           <div className="flex gap-2 mb-10">
             <button
               onClick={() =>
-                router.push(
-                  "/users/" + user.email.slice(0, user.email.indexOf("@"))
-                )
+                router.push("/" + user.email.slice(0, user.email.indexOf("@")))
               }
               className="bg-black-900 text-white pl-4 pr-4 pt-1 border border-black-900 pb-1 text-sm rounded-full hover:bg-transparent hover:text-black-900 duration-200"
             >
