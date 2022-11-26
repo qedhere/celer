@@ -54,6 +54,7 @@ export default function App() {
       setTitleErrorText("Title cannot be longer than 64 characters.");
     } else {
       await setDoc(doc(db, "users", user.email, "notes", postID), {
+        id: postID,
         title: titleValue,
         content: textAreaValue,
         likes: 0,
@@ -84,7 +85,9 @@ export default function App() {
         tags: updatedTags,
       });
 
-      // router.push("/" + user.email.slice(0, user.email.indexOf("@")) + "/" + postID);
+      router.push(
+        "/" + user.email.slice(0, user.email.indexOf("@")) + "/" + postID
+      );
     }
   };
 

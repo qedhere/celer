@@ -186,6 +186,7 @@ export default function SignUp() {
                 content: "This is note has been auto-generated.",
                 likes: 0,
                 views: 0,
+                id: "00000000000",
               }
             );
 

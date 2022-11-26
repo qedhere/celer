@@ -11,19 +11,21 @@ import Image from "next/image";
 export default function DiceAvatar(props) {
   const [svg, setSvg] = React.useState(null);
   React.useEffect(() => {
-    const fetchPfpHash = async () => {
-      const docRef = doc(db, "users", props.user);
-      const docSnap = await getDoc(docRef);
-      setSvg(
-        createAvatar(style, {
-          seed: docSnap.data().pictureSeed,
-          dataUri: true,
-        })
-      );
-    };
-
-    fetchPfpHash();
-  }, []);
+    if (props){
+      const fetchPfpHash = async () => {
+        const docRef = doc(db, "users", props.user);
+        const docSnap = await getDoc(docRef);
+        setSvg(
+          createAvatar(style, {
+            seed: docSnap.data().pictureSeed,
+            dataUri: true,
+          })
+        );
+      };
+  
+      fetchPfpHash();
+    }
+  }, [props.user, props]);
 
   if (svg) {
     if (props.noBorder) {
