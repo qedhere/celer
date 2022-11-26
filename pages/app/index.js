@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useUser } from "@components/hooks";
-import { Button, useToasts, Loading, Divider } from "@geist-ui/core";
+import { Button, useToasts, Loading, Select } from "@geist-ui/core";
 import { useRouter } from "next/router";
 import { app } from "@lib/firebase";
 import { getAuth, signOut } from "firebase/auth";
@@ -12,8 +12,9 @@ import {
   CommentDiscussionIcon,
   FeedRepoIcon,
   PlusIcon,
+  ArrowRightIcon,
+  KebabHorizontalIcon,
 } from "@primer/octicons-react";
-import ReactMarkdown from "react-markdown";
 import moment from "moment";
 import {
   doc,
@@ -209,14 +210,73 @@ export default function App() {
                     My Notes
                   </div>
                   <div className="grow"></div>
+                  <Select placeholder="Search..." multiple width="200px">
+                    {Object.keys(data.tags).map((tag) => {
+                      return (
+                        <Select.Option value={tag} key={tag}>
+                          {tag}
+                        </Select.Option>
+                      );
+                    })}
+                  </Select>
                 </div>
 
                 {notes.length > 1 ? (
-                  <div className="min-h-[300px] w-full flex flex-col justify-center items-center relative">
-                    <div>
+                  <div className="min-h-[300px] w-full flex relative">
+                    <div className="mt-5 flex flex-wrap gap-2">
                       {notes.map((note) => {
                         if (note.id != "00000000000") {
-                          return <div key={note.id}>{note.title}</div>;
+                          return (
+                            <div
+                              key={note.id}
+                              className="p-4 border relative rounded-xl h-fit max-w-[300px] bg-gradient-to-b from-gray-50 to-gray-100 shadow-md hover:shadow-xl duration-500"
+                            >
+                              <div className="absolute top-0 right-0 pr-4 pt-2">
+                                <button className="text-gray-400">
+                                  <KebabHorizontalIcon />
+                                </button>
+                              </div>
+                              <div className="font-mono text-xs text-gray-500">
+                                {note.id}
+                              </div>
+                              <div className="flex">
+                                <div className="font-bold tracking-tighter text-xl">
+                                  {note.title}
+                                </div>
+                                <div className="grow"></div>
+                              </div>
+                              <div className="flex flex-wrap gap-1 mt-1">
+                                {note.tags.map((tag) => (
+                                  <div
+                                    className="text-[8pt] bg-gray-200 rounded-full pl-2 pr-2 text-gray-500"
+                                    key={tag}
+                                  >
+                                    {tag}
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="text-sm mt-2 text-gray-500 whitespace-wrap truncate h-[50px]">
+                                {note.content}
+                              </div>
+                              <div className="flex items-center gap-2 text-gray-500">
+                                <div className="flex items-center gap-2">
+                                  <EyeIcon /> {data.totalViews}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <HeartIcon /> {data.totalViews}
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  <CommentDiscussionIcon /> {data.totalViews}
+                                </div>
+                                <div className="grow"></div>
+                                <div className="">
+                                  <button className="p-2 rounded-full duration-200 hover:bg-[#0070f320] flex items-center justify-center text-success-300">
+                                    <ArrowRightIcon />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          );
                         }
                       })}
                     </div>
