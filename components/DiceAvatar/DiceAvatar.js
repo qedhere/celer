@@ -11,7 +11,7 @@ import Image from "next/image";
 export default function DiceAvatar(props) {
   const [svg, setSvg] = React.useState(null);
   React.useEffect(() => {
-    if (props){
+    if (props) {
       const fetchPfpHash = async () => {
         const docRef = doc(db, "users", props.user);
         const docSnap = await getDoc(docRef);
@@ -22,7 +22,7 @@ export default function DiceAvatar(props) {
           })
         );
       };
-  
+
       fetchPfpHash();
     }
   }, [props.user, props]);

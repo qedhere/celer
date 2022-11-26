@@ -68,10 +68,8 @@ export default function App() {
       // Check if tag list is empty
       if (tagList.length > 0) {
         for (var i in tagList) {
-          console.log(tagList[i]);
           if (tagList[i] in data.tags) {
             updatedTags[tagList[i]].push(postID);
-            console.log(updatedTags);
           } else {
             updatedTags[tagList[i]] = [postID];
           }
