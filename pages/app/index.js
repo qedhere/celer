@@ -1,6 +1,13 @@
 import * as React from "react";
 import { useUser } from "@components/hooks";
-import { Button, useToasts, Loading, Select } from "@geist-ui/core";
+import {
+  Button,
+  useToasts,
+  Loading,
+  Select,
+  Popover,
+  Modal,
+} from "@geist-ui/core";
 import { useRouter } from "next/router";
 import { app } from "@lib/firebase";
 import { getAuth, signOut } from "firebase/auth";
@@ -14,6 +21,8 @@ import {
   PlusIcon,
   ArrowRightIcon,
   KebabHorizontalIcon,
+  ShareIcon,
+  TrashIcon,
 } from "@primer/octicons-react";
 import moment from "moment";
 import {
@@ -22,6 +31,7 @@ import {
   getFirestore,
   getDocs,
   collection,
+  deleteDoc,
 } from "firebase/firestore";
 import Image from "next/image";
 
@@ -33,18 +43,34 @@ export default function App() {
   const { user, loading, data } = useUser();
   const [aboutMe, setAboutMe] = React.useState("");
   const [notes, setNotes] = React.useState();
+  const [currentSort, setCurrentSort] = React.useState([]);
   const [loadingOpacity, setLoadingOpacity] = React.useState(0);
+  const [modal, setModal] = React.useState(false);
+  const [selectedNote, setSelectedNote] = React.useState();
+  const [modalLoading, setModalLoading] = React.useState(false);
+  const modalHandler = () => {
+    setModal(true);
+  };
+  const closeModalHandler = (event) => {
+    setModal(false);
+  };
 
   React.useEffect(() => {
     if (data) {
       setAboutMe(data.aboutMe);
+      console.log(data);
     }
     if (user) {
       const fetchNotesData = async () => {
         const posts = await getDocs(
           collection(db, "users", user.email, "notes")
         );
-        setNotes(posts.docs.map((doc) => doc.data()));
+
+        const unsortedPosts = posts.docs.map((doc) => doc.data());
+        const sortedPosts = unsortedPosts.sort((a, b) => {
+          return new Date(b.timestamp) - new Date(a.timestamp);
+        });
+        setNotes(sortedPosts);
       };
 
       fetchNotesData();
@@ -81,6 +107,67 @@ export default function App() {
     });
     setLoadingOpacity(0);
   };
+
+  const deleteNote = async () => {
+    setModalLoading(true);
+    var updatedTags = data.tags;
+    for (var i in selectedNote.tags) {
+      console.log(selectedNote.tags[i]);
+      // Remove note from tag
+
+      updatedTags[selectedNote.tags[i]].splice(
+        updatedTags[selectedNote.tags[i]].indexOf(selectedNote.id),
+        1
+      );
+      if (selectedNote.tags[i] != "Unlisted") {
+        if (updatedTags[selectedNote.tags[i]].length === 0) {
+          // Remove tag if no notes are left
+          delete updatedTags[selectedNote.tags[i]];
+        }
+      }
+    }
+
+    const userDataRef = doc(db, "users", user.email);
+    await updateDoc(userDataRef, {
+      tags: updatedTags,
+    });
+
+    // Remove note from notes list
+    await deleteDoc(doc(db, "users", user.email, "notes", selectedNote.id));
+
+    // Reduce note count
+    await updateDoc(userDataRef, {
+      totalNotes: data.totalNotes - 1,
+    });
+
+    setModal(false);
+    setModalLoading(false);
+
+    // Show toast with note ID
+    setToast({
+      text: "Deleted note " + selectedNote.id,
+      type: "success",
+      delay: 5000,
+    });
+
+    // Refresh page
+    router.reload();
+  };
+
+  const popoverContent = () => (
+    <div className="pt-0 pb-0 flex flex-col items-start">
+      <button className="text-sm hover:bg-gray-100 pl-2 pr-2 pt-2 pb-2 w-full flex gap-1 items-center duraiton-200">
+        <ShareIcon /> Copy Link
+      </button>
+      <button
+        className="text-sm hover:bg-red-100 pl-2 pr-2 pt-2 pb-2 w-full flex gap-1 items-center text-error-300 duration-200"
+        onClick={modalHandler}
+      >
+        <TrashIcon /> Delete Note
+      </button>
+    </div>
+  );
+
   if (loading)
     return (
       <div>
@@ -138,6 +225,26 @@ export default function App() {
             />
             <Header />
             <Body>
+              <Modal visible={modal} onClose={closeModalHandler}>
+                <Modal.Title>Hold up</Modal.Title>
+                <Modal.Subtitle>This action cannot be undone</Modal.Subtitle>
+                <Modal.Content>
+                  <p className="text-center">
+                    Are you sure you want to do this?
+                  </p>
+                </Modal.Content>
+                <Modal.Action passive onClick={() => setModal(false)}>
+                  Cancel
+                </Modal.Action>
+                <Modal.Action
+                  type="error"
+                  style={{ backgroundColor: "#e00e0010" }}
+                  onClick={deleteNote}
+                  loading={modalLoading}
+                >
+                  <button className="text-error-300">Delete</button>
+                </Modal.Action>
+              </Modal>
               <div className="w-full mt-[256px]">
                 <div className="flex mb-10 xs:justify-start items-center w-full gap-10 flex-wrap">
                   <div className="w-[90px] h-[90px]">
@@ -204,21 +311,30 @@ export default function App() {
                     Log Out
                   </button>
                 </div>
-                <div className="mt-20 flex">
+                <div className="mt-20 flex flex-wrap gap-5">
                   <div className="text-2xl flex gap-2 items-center tracking-tighter font-bold">
                     <FeedRepoIcon size={24} className="" />
                     My Notes
                   </div>
                   <div className="grow"></div>
-                  <Select placeholder="Search..." multiple width="200px">
-                    {Object.keys(data.tags).map((tag) => {
-                      return (
-                        <Select.Option value={tag} key={tag}>
-                          {tag}
-                        </Select.Option>
-                      );
-                    })}
-                  </Select>
+                  <div className="grow w-full pr-4">
+                    <Select
+                      placeholder="Search..."
+                      multiple
+                      width="100%"
+                      onChange={(val) => {
+                        setCurrentSort(val);
+                      }}
+                    >
+                      {Object.keys(data.tags).map((tag) => {
+                        return (
+                          <Select.Option value={tag} key={tag}>
+                            {tag}
+                          </Select.Option>
+                        );
+                      })}
+                    </Select>
+                  </div>
                 </div>
 
                 {notes.length > 1 ? (
@@ -226,64 +342,94 @@ export default function App() {
                     <div className="mt-5 flex flex-wrap gap-2">
                       {notes.map((note) => {
                         if (note.id != "00000000000") {
-                          return (
-                            <div
-                              key={note.id}
-                              className="p-4 border relative rounded-xl h-fit max-w-[300px] bg-gradient-to-b from-gray-50 to-gray-100 shadow-md hover:shadow-xl duration-500"
-                            >
-                              <div className="absolute top-0 right-0 pr-4 pt-2">
-                                <button className="text-gray-400">
-                                  <KebabHorizontalIcon />
-                                </button>
-                              </div>
-                              <div className="font-mono text-xs text-gray-500">
-                                {note.id}
-                              </div>
-                              <div className="flex">
-                                <div className="font-bold tracking-tighter text-xl">
-                                  {note.title}
-                                </div>
-                                <div className="grow"></div>
-                              </div>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                {note.tags.map((tag) => (
-                                  <div
-                                    className="text-[8pt] bg-gray-200 rounded-full pl-2 pr-2 text-gray-500"
-                                    key={tag}
+                          if (
+                            currentSort.every((val) => note.tags.includes(val))
+                          ) {
+                            return (
+                              <div
+                                key={note.id}
+                                className="p-4 border relative rounded-xl h-fit max-w-[264px] bg-gradient-to-b from-gray-50 to-gray-100 shadow-md hover:shadow-xl duration-500"
+                              >
+                                <div className="absolute top-0 right-0 pr-4 pt-2">
+                                  <button
+                                    className="text-gray-400"
+                                    onClick={() => {
+                                      setSelectedNote(note);
+                                    }}
                                   >
-                                    {tag}
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="text-sm mt-2 text-gray-500 whitespace-wrap truncate h-[50px]">
-                                {note.content}
-                              </div>
-                              <div className="flex items-center gap-2 text-gray-500">
-                                <div className="flex items-center gap-2">
-                                  <EyeIcon /> {data.totalViews}
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <HeartIcon /> {data.totalViews}
-                                </div>
-                                <div className="flex items-center gap-2">
-                                  <CommentDiscussionIcon /> {data.totalViews}
-                                </div>
-                                <div className="grow"></div>
-                                <div className="">
-                                  <button className="p-2 rounded-full duration-200 hover:bg-[#0070f320] flex items-center justify-center text-success-300">
-                                    <ArrowRightIcon />
+                                    <Popover
+                                      content={popoverContent}
+                                      placement="top"
+                                      enterDelay={50}
+                                      leaveDelay={0}
+                                      disableItemsAutoClose={false}
+                                    >
+                                      <KebabHorizontalIcon />
+                                    </Popover>
                                   </button>
                                 </div>
+                                <div className="font-mono text-xs text-gray-500">
+                                  {note.id}
+                                </div>
+                                <div className="flex">
+                                  <div className="font-bold tracking-tighter text-xl truncate">
+                                    {note.title}
+                                  </div>
+                                  <div className="grow"></div>
+                                </div>
+                                <div className="flex flex-wrap gap-1 mt-1">
+                                  {note.tags.map((tag) => (
+                                    <div
+                                      className="text-[8pt] bg-gray-200 rounded-full pl-2 pr-2 text-gray-500"
+                                      key={tag}
+                                    >
+                                      {tag}
+                                    </div>
+                                  ))}
+                                </div>
+                                <div className="text-sm mt-2 text-gray-500 whitespace-wrap truncate h-[50px]">
+                                  {note.content}
+                                </div>
+                                <div className="flex items-center gap-2 text-gray-500">
+                                  <div className="flex items-center gap-2">
+                                    <EyeIcon /> {data.totalViews}
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <HeartIcon /> {data.totalViews}
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <CommentDiscussionIcon /> {data.totalViews}
+                                  </div>
+                                  <div className="grow"></div>
+                                  <div className="">
+                                    <button
+                                      className="p-2 rounded-full duration-200 hover:bg-[#0070f320] flex items-center justify-center text-success-300"
+                                      onClick={() =>
+                                        router.push(
+                                          "/" +
+                                            user.email.slice(
+                                              0,
+                                              user.email.indexOf("@")
+                                            ) +
+                                            "/" +
+                                            note.id
+                                        )
+                                      }
+                                    >
+                                      <ArrowRightIcon />
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                          );
+                            );
+                          }
                         }
                       })}
                     </div>
                     <div className="absolute right-0 bottom-0">
                       <button
                         onClick={() => router.push("/app/new")}
-                        className="bg-[transparent] w-[45px] h-[45px] rounded-full flex items-center border border-2 border-dashed border-success-100 justify-center hover:bg-[#0070f320] duration-200 hover:border-solid"
+                        className="bg-[transparent] w-[45px] h-[45px] backdrop-blur shadow-xl sm:shadow-none rounded-full flex items-center border border-2 border-dashed border-success-100 justify-center hover:bg-[#0070f320] duration-200 hover:border-solid"
                       >
                         <PlusIcon className="text-success-300" size={24} />
                       </button>

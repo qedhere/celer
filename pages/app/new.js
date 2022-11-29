@@ -16,8 +16,6 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 const db = getFirestore(app);
-
-const postID = uid();
 const uiDate = new Date();
 
 export default function App() {
@@ -29,6 +27,7 @@ export default function App() {
   const [textAreaValue, setTextAreaValue] = React.useState("");
   const [titleErrorText, setTitleErrorText] = React.useState(" ");
   const [titleValue, setTitleValue] = React.useState("");
+  const postID = uid();
 
   const updateTags = (e) => {
     e.preventDefault();
@@ -59,7 +58,7 @@ export default function App() {
         content: textAreaValue,
         likes: 0,
         views: 0,
-        tags: tagList,
+        tags: tagList.length == 0 ? ["Unlisted"] : tagList,
         timestamp: new Date().toString(),
       });
 
@@ -81,6 +80,7 @@ export default function App() {
 
       await updateDoc(doc(db, "users", user.email), {
         tags: updatedTags,
+        totalNotes: data.totalNotes + 1,
       });
 
       router.push(

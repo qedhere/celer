@@ -1,12 +1,13 @@
 import * as React from "react";
 import { useRouter } from "next/router";
-import { Button, useToasts, Loading } from "@geist-ui/core";
+import { Button, useToasts, Loading, Select } from "@geist-ui/core";
 import { Header, Body, Meta, DiceAvatar } from "@components/web";
 import {
   EyeIcon,
   RepoIcon,
   HeartIcon,
   CommentDiscussionIcon,
+  FeedRepoIcon,
 } from "@primer/octicons-react";
 import { app } from "@lib/firebase";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
@@ -17,6 +18,8 @@ const db = getFirestore(app);
 export default function UserProfile() {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = React.useState(null);
+  const [notes, setNotes] = React.useState(null);
+  const [currentSort, setCurrentSort] = React.useState([]);
   const router = useRouter();
   const userName = router.query.user;
 
@@ -42,7 +45,7 @@ export default function UserProfile() {
       return (
         <div>
           <Meta
-            title="Celer | App"
+            title={"Celer | " + userName}
             description="🚀 Instantly share beautiful notes, latex, markdown, and more!"
           />
           <Header />
@@ -81,6 +84,31 @@ export default function UserProfile() {
                   <div className="placeholder:text-gray-400 w-full h-[80px] text-sm p-0 m-0 resize-none rounded-lg p-2 focus:ring duration-500 ring-gray-100 overflow-hidden">
                     {data.aboutMe}
                   </div>
+                </div>
+              </div>
+              <div className="mt-20 flex flex-wrap gap-5">
+                <div className="text-2xl flex gap-2 items-center tracking-tighter font-bold">
+                  <FeedRepoIcon size={24} className="" />
+                  My Notes
+                </div>
+                <div className="grow"></div>
+                <div className="grow w-full pr-4">
+                  <Select
+                    placeholder="Search..."
+                    multiple
+                    width="100%"
+                    onChange={(val) => {
+                      setCurrentSort(val);
+                    }}
+                  >
+                    {Object.keys(data.tags).map((tag) => {
+                      return (
+                        <Select.Option value={tag} key={tag}>
+                          {tag}
+                        </Select.Option>
+                      );
+                    })}
+                  </Select>
                 </div>
               </div>
             </div>
