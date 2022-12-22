@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useRouter } from "next/router";
-import { Button, useToasts, Loading, Select } from "@geist-ui/core";
+import { Button, useToasts, Loading, Select, Popover } from "@geist-ui/core";
 import { Header, Body, Meta, DiceAvatar } from "@components/web";
 import {
   EyeIcon,
@@ -8,10 +8,19 @@ import {
   HeartIcon,
   CommentDiscussionIcon,
   FeedRepoIcon,
+  ArrowRightIcon,
+  PlusIcon,
 } from "@primer/octicons-react";
 import { app } from "@lib/firebase";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  getFirestore,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 import moment from "moment";
+import Image from "next/image";
 
 const db = getFirestore(app);
 
@@ -37,8 +46,21 @@ export default function UserProfile() {
         setLoading(false);
       };
       fetchData();
+      const fetchNotesData = async () => {
+        const posts = await getDocs(
+          collection(db, "users", userName + "@celer.vercel.app", "notes")
+        );
+
+        const unsortedPosts = posts.docs.map((doc) => doc.data());
+        const sortedPosts = unsortedPosts.sort((a, b) => {
+          return new Date(b.timestamp) - new Date(a.timestamp);
+        });
+        setNotes(sortedPosts);
+      };
+
+      fetchNotesData();
     }
-  }, [router.query.user, userName, data]);
+  }, [userName]);
 
   if (!loading) {
     if (data) {
@@ -69,7 +91,7 @@ export default function UserProfile() {
                     <div className="flex items-center gap-2">
                       <RepoIcon /> {data.totalNotes}
                     </div>
-                    <div className="flex items-center gap-2">
+                    {/* <div className="flex items-center gap-2">
                       <EyeIcon /> {data.totalViews}
                     </div>
                     <div className="flex items-center gap-2">
@@ -77,7 +99,7 @@ export default function UserProfile() {
                     </div>
                     <div className="flex items-center gap-2">
                       <CommentDiscussionIcon /> {data.totalViews}
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="grow h-full min-w-[200px] flex justify-center sm:max-w-none relative group">
@@ -111,6 +133,89 @@ export default function UserProfile() {
                   </Select>
                 </div>
               </div>
+              {notes.length > 1 ? (
+                <div className="min-h-[300px] w-full flex relative">
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {notes.map((note) => {
+                      if (note.id != "00000000000") {
+                        if (
+                          currentSort.every((val) => note.tags.includes(val))
+                        ) {
+                          return (
+                            <div
+                              key={note.id}
+                              className="p-4 border relative rounded-xl h-fit max-w-[264px] bg-gradient-to-b from-gray-50 to-gray-100 shadow-md hover:shadow-xl duration-500"
+                            >
+                              <div className="font-mono text-xs text-gray-500">
+                                {note.id}
+                              </div>
+                              <div className="flex">
+                                <div className="font-bold tracking-tighter text-xl truncate">
+                                  {note.title}
+                                </div>
+                                <div className="grow"></div>
+                              </div>
+                              <div className="flex flex-wrap gap-1 mt-1">
+                                {note.tags.map((tag) => (
+                                  <div
+                                    className="text-[8pt] bg-gray-200 rounded-full pl-2 pr-2 text-gray-500"
+                                    key={tag}
+                                  >
+                                    {tag}
+                                  </div>
+                                ))}
+                              </div>
+                              <div className="text-sm mt-2 text-gray-500 whitespace-wrap truncate h-[50px]">
+                                {note.content}
+                              </div>
+                              <div className="flex items-center gap-2 text-gray-500">
+                                {/* <div className="flex items-center gap-2">
+                                    <EyeIcon /> {data.totalViews}
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <HeartIcon /> {data.totalViews}
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <CommentDiscussionIcon /> {data.totalViews}
+                                  </div> */}
+                                <div className="w-[128px]"></div>
+                                <div className="grow"></div>
+                                <div className="">
+                                  <button
+                                    className="p-2 rounded-full duration-200 hover:bg-[#0070f320] flex items-center justify-center text-success-300"
+                                    onClick={() =>
+                                      router.push(
+                                        "/" + userName + "/" + note.id
+                                      )
+                                    }
+                                  >
+                                    <ArrowRightIcon />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        }
+                      }
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <div className="min-h-[300px] w-full flex flex-col justify-center items-center relative">
+                  <div className="w-full flex justify-center">
+                    <Image
+                      src="/mona-loading.gif"
+                      width={75}
+                      height={75}
+                      alt="Loading GIF"
+                      priority
+                    />
+                  </div>
+                  <div className="text-gray-500 text-sm mt-5">
+                    {userName} has no notes yet!
+                  </div>
+                </div>
+              )}
             </div>
           </Body>
         </div>
@@ -124,7 +229,7 @@ export default function UserProfile() {
           />
           <Header />
           <Body>
-            <div className="w-full mt-[256px]">No data lol</div>
+            <div className="w-full mt-[256px]">404</div>
           </Body>
         </div>
       );
