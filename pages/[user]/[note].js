@@ -98,7 +98,7 @@ export default function UserProfile() {
                   noBorder
                 />
                 <div className="text-gray-500 w-0 h-0 invisible sm:visible sm:w-auto sm:h-auto">
-                  <Link href={"/" + userName} color underline>
+                  <Link href={"/" + userName} underline>
                     {userName}
                   </Link>{" "}
                   &bull; {moment(new Date(data.timestamp)).fromNow()}
@@ -119,7 +119,7 @@ export default function UserProfile() {
           />
           <Header />
           <Body>
-            <div className="w-full mt-[256px]">No data lol</div>
+            <div className="w-full mt-[256px]">404</div>
           </Body>
         </div>
       );
