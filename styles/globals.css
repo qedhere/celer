@@ -35,11 +35,11 @@ a {
 }
 
 article h1 {
-  @apply tracking-tighter;
+  @apply tracking-tighter overflow-visible;
 }
 
 article h2 {
-  @apply tracking-tighter;
+  @apply tracking-tighter overflow-visible;
 }
 
 .emoji {

@@ -1,0 +1,94 @@
+export const meta = {
+  title: "Reflection Log",
+  description: "Documenting progress towards this project.",
+  tags: ["CAS", "Guide", "General"],
+  contributors: ["manuanish"],
+  link: "index.mdx",
+};
+
+import { Layout, LinkButton } from "@components/docs";
+import moment from "moment";
+import Image from "next/image";
+import { mhchemParser } from "mhchemparser";
+
+Greetings from the past! This post was written <span className="text-gray-500">{moment(new Date("Tue Dec 13 2022 07:29:38 GMT+0000 (GMT)")).fromNow()}</span>
+
+### Contents
+In this document we will discuss the creation of Celer, and the process of creating a new project. The article is broadly divided into the following sections:
+
+1. **Investigation**: What is the problem we are trying to solve? What is the motivation behind this project?
+
+2. **Preparation**: What are the tools we are going to use? What are the requirements for the project?
+
+3. **Action**: What are the steps we are going to take to create the project? How can we efficiently achieve our goals?
+
+4. **Reflection**: What did we learn from this project? What are the lessons we can take away from this project?
+
+5. **Demonstration**: What is the end result of this project? How can we show the results of our work?
+
+With all that said, let's dive right in!
+
+> The reasonable man adapts himself to the world: the unreasonable one persists in trying to adapt the world to himself. Therefore all progress depends on the unreasonable man. 
+
+---
+
+## Investigation
+
+What was the motivation behind this project? Speaking from the perspective of a student who is studying in an online school, communication with others is
+one of the most important aspects of the learning experience. What not a better way than using a platform that is designed for communication?
+
+I'm going to be completely honest with you, I'm not a huge fan of the Adobe Connect Chat. It's a general purpose tool, which get's the job done for most classes, however, often not
+enough. Consider the following:
+
+<Image src="/reflection/adobe-chat.png" width={2000} height={800} />
+
+As we can see the formatting, is by all means not perfect. It's difficult to read, and not very user friendly. For context, here is a screenshot of the same message(s) rendered using Celer.
+
+$$
+\text{hello chat}
+$$
+
+$$
+\text{C}_6\text{H}_{12}\text{O}_6 + 6\text{O}_2 \longrightarrow 6\text{CO}_2 + 6\text{H}_2\text{O}
+$$
+
+$$
+\displaystyle \zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s}
+$$
+
+## Preparation
+With this goal in mind, I started to plan out how I might go about impleting this in a feasible way. I started by looking at the tools I had at my disposal. I had a few options:
+
+1. Create a plugin for Adobe Connect.
+  * **<span className="text-success-300">Pros:</span>**
+    - User friendly.
+  * **<span className="text-red-500">Cons:</span>**
+    - The Adobe Connect platform is not open source.
+    - Plugins are poorly documented.
+    - Plugins have to be approved by Adobe.
+2. Create an external embeddable chat widget.
+  * **<span className="text-success-300">Pros:</span>**
+    - Open source.
+    - Easy to implement.
+    - Highly customizable.
+  * **<span className="text-red-500">Cons:</span>**
+    - No access to Adobe Connect API.
+
+I decided to go with the second option, as it was the most feasible.  
+
+## Action
+For the project, I had the following requirements:
+
+1. Built for speed, and efficiency. Low latency is a must.
+2. Easy to use, and intuitive.
+3. Support for LaTeX, Markdown, MhChem and Raw HTML.
+
+With the recent release of Next.js 13, I decided to use it as the framework for the project. Here is speed comparison between the frameworks I had in mind:
+
+<Image src="/reflection/turbopack.avif" width={2000} height={800}/>
+
+As for the backend, I decided to use Firebase. Firebase is a cloud platform that provides a variety of services, including a realtime database, authentication, and hosting. I used Firebase because it is easy to use, and has a free tier.
+
+<div className="w-full h-[200px]"></div>
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>;

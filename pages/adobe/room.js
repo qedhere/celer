@@ -1,5 +1,5 @@
 import { Meta } from "@components/web";
-import { SignOutIcon } from "@primer/octicons-react";
+import { QuestionIcon, SignOutIcon, PlusIcon } from "@primer/octicons-react";
 import * as React from "react";
 import { FaTelegramPlane } from "react-icons/fa";
 import remarkGfm from "remark-gfm";
@@ -11,6 +11,9 @@ import { getDatabase, ref, onValue, set } from "firebase/database";
 import { useRouter } from "next/router";
 import { app } from "@lib/firebase";
 import moment from "moment";
+import Image from "next/image";
+import { Modal, useToasts } from "@geist-ui/core";
+import { SiAdobecreativecloud } from "react-icons/si";
 
 const db = getDatabase(app);
 
@@ -25,6 +28,9 @@ export default function Room() {
   const [userName, setUserName] = React.useState(null);
   const [userID, setUserID] = React.useState(null);
   const [userNameValue, setUserNameValue] = React.useState(null);
+  const [modal, setModal] = React.useState(false);
+  const { setToast } = useToasts();
+  const [zoom, setZoom] = React.useState(0.8);
 
   React.useEffect(() => {
     if (db) {
@@ -54,6 +60,19 @@ export default function Room() {
       });
     }
   }, []);
+
+  React.useEffect(() => {
+    if (db && document.getElementById("msgEnd")) {
+      onValue(ref(db, "room/messages"), (snapshot) => {
+        const data = snapshot.val();
+        try {
+          document
+            .getElementById("msgEnd")
+            .scrollIntoView({ behavior: "smooth" });
+        } catch {}
+      });
+    }
+  });
 
   const parseMhChem = (text) => {
     const regex = /\\ce\{([^}]+)\}/g;
@@ -102,16 +121,23 @@ export default function Room() {
     // Get element by ID 'message-input' and set value to empty string
     document.getElementById("message-input").value = "";
 
-    const newMessageRef = ref(
-      db,
-      "room/messages/" + Math.random().toString(36).substring(7)
-    );
-    await set(newMessageRef, {
-      message: message,
-      user: userName,
-      timestamp: new Date().getTime().toString(),
-      userID: userID,
-    });
+    // setTimeout(() => {}, 1000);
+    // document.getElementById('msgEnd').scrollIntoView({ behavior: 'smooth'})
+
+    // Check if message is blank
+    if (message.replace(/\s/g, "").length) {
+      const newMessageRef = ref(
+        db,
+        "room/messages/" + Math.random().toString(36).substring(7)
+      );
+      await set(newMessageRef, {
+        message: message,
+        user: userName,
+        timestamp: new Date().getTime().toString(),
+        userID: userID,
+      });
+    } else {
+    }
   };
 
   if (!userName) {
@@ -173,11 +199,50 @@ export default function Room() {
           title="Celer | Room"
           description="🚀 Instantly share beautiful notes, latex, markdown, and more!"
         />
-        <div className="fixed w-full h-[calc(100vh)] overflow-y-scroll bg-white flex flex-col">
+        <Modal visible={modal} onClose={() => setModal(false)}>
+          <p className="text-sm text-left mt-5 text-gray-500">
+            A low-latency chat room for Adobe Connect users. Share stunning
+            notes, LaTeX, Markdown, and more! For more information, visit{" "}
+            <button
+              href="https://celer.vercel.app"
+              className="text-blue-500 hover:underline"
+              onClick={() => {
+                window.open("https://celer.vercel.app/adobe", "_blank");
+              }}
+            >
+              celer.vercel.app/adobe
+            </button>
+            .
+          </p>
+        </Modal>
+        <div className="w-full fixed top-0 h-[48px] bg-gradient-to-r from-gray-50 to-transparent flex items-center">
+          <Image
+            src="/delta.svg"
+            width={18}
+            height={18}
+            className="ml-4 opacity-50"
+            alt="Celer"
+          />
+          <div className="ml-2 text-sm font-extrabold tracking-tighter opacity-50">
+            Celer for Adobe
+          </div>
+          <div className="grow"></div>
+          <button
+            className="mr-4 text-gray-400 hover:text-gray-500 duration-200"
+            onClick={() => setModal(true)}
+          >
+            <QuestionIcon size={20} />
+          </button>
+          <div className="w-full absolute bottom-0 h-[1px] bg-gradient-to-r from-gray-200 to-transparent"></div>
+        </div>
+        <div
+          className="fixed w-full h-[calc(100vh-103px)] overflow-y-scroll bg-white flex flex-col top-[48px]"
+          id="msgContainer"
+        >
           {messages.map((msg) => {
             if (msg.value.userID != userID) {
               return (
-                <div className="" key={msg.key}>
+                <div className="" key={msg.key} id={msg.key}>
                   <div className="text-xs text-gray-500 mt-4 ml-4 mr-4 flex items-center gap-2">
                     <div className="font-bold">{msg.value.user}</div>
 
@@ -226,6 +291,7 @@ export default function Room() {
               );
             }
           })}
+          <div className="w-full pt-2 pb-2" id="msgEnd"></div>
         </div>
         <div className="flex fixed bottom-5 w-[calc(100vw)] items-center">
           <form className="grow flex" onSubmit={handleMessageSubmit}>
