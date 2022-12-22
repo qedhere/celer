@@ -15,12 +15,16 @@ export default function DiceAvatar(props) {
       const fetchPfpHash = async () => {
         const docRef = doc(db, "users", props.user);
         const docSnap = await getDoc(docRef);
-        setSvg(
-          createAvatar(style, {
-            seed: docSnap.data().pictureSeed,
-            dataUri: true,
-          })
-        );
+        try {
+          setSvg(
+            createAvatar(style, {
+              seed: docSnap.data().pictureSeed,
+              dataUri: true,
+            })
+          );
+        } catch {
+          setSvg(null);
+        }
       };
 
       fetchPfpHash();

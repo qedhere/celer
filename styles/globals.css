@@ -35,9 +35,16 @@ a {
 }
 
 article h1 {
-  @apply tracking-tighter;
+  @apply tracking-tighter overflow-visible;
 }
 
 article h2 {
-  @apply tracking-tighter;
+  @apply tracking-tighter overflow-visible;
+}
+
+.emoji {
+  display: inline-block;
+  width: auto;
+  height: 1em;
+  vertical-align: -0.125em;
 }

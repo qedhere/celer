@@ -17,5 +17,6 @@ export default withMDX({
   reactStrictMode: true,
   images: {
     domains: ["github.com", "avatars.githubusercontent.com"],
+    formats: ["image/avif", "image/webp"],
   },
 });
