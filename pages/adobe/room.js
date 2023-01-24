@@ -252,7 +252,7 @@ export default function Room() {
                       ).fromNow()}
                     </div>
                   </div>
-                  <div className="bg-gray-300 w-fit ml-4 rounded-xl mt-2">
+                  <div className="bg-gray-200 w-fit ml-4 rounded-xl mt-2">
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm, remarkMath]}
                       rehypePlugins={[rehypeKatex]}
@@ -277,11 +277,11 @@ export default function Room() {
                       </div>
                       <div className="font-bold">{msg.value.user}</div>
                     </div>
-                    <div className="bg-success-300 w-fit rounded-xl mt-2 float-right mr-4">
+                    <div className="bg-[#0070f320] w-fit rounded-xl mt-2 float-right mr-4">
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm, remarkMath]}
                         rehypePlugins={[rehypeKatex]}
-                        className="text-sm text-white ml-4 mr-4 pt-[1px] pb-[1px]"
+                        className="text-sm text-black-900 ml-4 mr-4 pt-[1px] pb-[1px]"
                       >
                         {msg.value.message}
                       </ReactMarkdown>
